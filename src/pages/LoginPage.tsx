@@ -18,13 +18,13 @@ const LoginPage: React.FC = () => {
             });
 
             if (!response.ok) {
-                throw new Error("登录失败");
+                throw new Error("Failed Login !");
             }
 
             const data = await response.json();
-            console.log("登录成功:", data);
+            console.log("Login Successful:", data);
         } catch (err) {
-            setError("登录失败，请检查您的ID和密码。");
+            setError("GG");
         }
     };
 
