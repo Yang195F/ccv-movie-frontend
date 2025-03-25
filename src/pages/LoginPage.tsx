@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./pages_styles.css";
+import "../styles/pages_styles.css";
 import InputField from "../components/InputField";
-import { login } from "../apis/auth";
+import { login } from "../services/authService";
 
 const LoginPage: React.FC = () => {
     const [userId, setUserId] = useState("");
@@ -9,12 +9,13 @@ const LoginPage: React.FC = () => {
     const [error, setError] = useState("");
 
     const handleLogin = async () => {
-        try {
-            const data = await login(userId, password);
-            console.log("Login Successful:", data);
+        const result = await login(userId, password);
+
+        if (result.success) {
+            console.log("Login Successful:", result.data);
             setError("");
-        } catch (err) {
-            setError("Login Failed!");
+        } else {
+            setError(result.message);
         }
     };
 
