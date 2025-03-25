@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles.css";
+import "./pages_styles.css";
 import InputField from "../components/InputField";
 
 const LoginPage: React.FC = () => {
