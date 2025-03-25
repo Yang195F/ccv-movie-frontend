@@ -11,18 +11,20 @@ const LoginPage: React.FC = () => {
         try {
             const response = await fetch("https://localhost:7094/api/auth/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({ userId, password }),
             });
 
-            const data = await response.json();
-            if (response.ok) {
-                console.log("Login Successfully", data);
-            } else {
-                console.error("Failed to login.", data.message);
-                setError(data.message);
+            if (!response.ok) {
+                throw new Error("登录失败");
             }
+
+            const data = await response.json();
+            console.log("登录成功:", data);
         } catch (err) {
+            setError("登录失败，请检查您的ID和密码。");
         }
     };
 
