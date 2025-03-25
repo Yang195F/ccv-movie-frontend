@@ -9,10 +9,8 @@ const LoginPage: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            // TODO: 在这里调用后端API进行身份验证
+            // TODO: API use at here
             console.log("Logging in with", { userId, password });
-            // 示例: const response = await fetch("/api/login", { method: "POST", body: JSON.stringify({ userId, password }) });
-            // 处理后端返回结果
         } catch (err) {
             setError("Failed to login. Please check your credentials and try again.");
         }
