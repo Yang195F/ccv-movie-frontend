@@ -9,10 +9,20 @@ const LoginPage: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            // TODO: API use at here
-            console.log("Logging in with", { userId, password });
+            const response = await fetch("https://localhost:7094/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userId, password }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                console.log("Login Successfully", data);
+            } else {
+                console.error("Failed to login.", data.message);
+                setError(data.message);
+            }
         } catch (err) {
-            setError("Failed to login. Please check your credentials and try again.");
         }
     };
 
