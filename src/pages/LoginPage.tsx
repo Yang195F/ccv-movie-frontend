@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./pages_styles.css";
 import InputField from "../components/InputField";
+import { login } from "../apis/auth";
 
 const LoginPage: React.FC = () => {
     const [userId, setUserId] = useState("");
@@ -9,22 +10,11 @@ const LoginPage: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch("https://localhost:7094/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ userId, password }),
-            });
-
-            if (!response.ok) {
-                throw new Error("Failed Login !");
-            }
-
-            const data = await response.json();
+            const data = await login(userId, password);
             console.log("Login Successful:", data);
+            setError("");
         } catch (err) {
-            setError("GG");
+            setError("Login Failed!");
         }
     };
 
