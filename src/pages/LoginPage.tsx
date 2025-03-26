@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/pages_styles.css";
 import InputField from "../components/InputField";
 import { login } from "../services/authService";
@@ -7,6 +8,7 @@ const LoginPage: React.FC = () => {
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         const result = await login(userId, password);
@@ -29,6 +31,9 @@ const LoginPage: React.FC = () => {
                 <InputField label="Password" type="password" value={password} onChange={setPassword} />
                 <button onClick={handleLogin} className="login-button">
                     Login
+                </button>
+                <button onClick={() => navigate("/register")} className="to-register-button">
+                    Register Now
                 </button>
             </div>
         </div>
