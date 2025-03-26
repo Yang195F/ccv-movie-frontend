@@ -15,7 +15,8 @@ const LoginPage: React.FC = () => {
             console.log("Login Successful:", result.data);
             setError("");
         } else {
-            setError(result.message);
+            setError("Got Error");
+            console.log("Login Failed:", result.message);
         }
     };
 
