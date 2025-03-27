@@ -1,0 +1,325 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+.seat-booking-container {
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+/* Header */
+.booking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #000;
+  border-bottom: 1px solid #222;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-icon {
+  cursor: pointer;
+}
+
+.logo-image {
+  height: 40px;
+}
+
+.progress-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.progress-step.active .step-number {
+  background-color: #ff0000;
+}
+
+.step-line {
+  width: 50px;
+  height: 2px;
+  background-color: #333;
+  margin: 0 5px;
+}
+
+.progress-step.active .step-line {
+  background-color: #ff0000;
+}
+
+.close-button {
+  cursor: pointer;
+}
+
+/* Booking Tabs */
+.booking-tabs {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #222;
+}
+
+.booking-tab {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #999;
+  position: relative;
+}
+
+.booking-tab.active {
+  color: #fff;
+}
+
+.booking-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff0000;
+}
+
+/* Showtime Info */
+.showtime-info {
+  background-color: #fff;
+  color: #000;
+  padding: 1rem;
+  width: fit-content;
+  border-radius: 0.5rem;
+  margin: 2rem 0 0 2rem;
+}
+
+.time {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 0.875rem;
+}
+
+/* Seat Legend */
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.seat-available {
+  background-color: #00bcd4;
+}
+
+.seat-sold {
+  background-color: #4caf50;
+}
+
+.seat-selected {
+  background-color: #ffc107;
+}
+
+/* Screen */
+.screen-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.screen {
+  width: 80%;
+  height: 30px;
+  border-top: 2px solid #fff;
+  border-radius: 50% 50% 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5px;
+  font-size: 0.875rem;
+  color: #999;
+}
+
+/* Seating Layout */
+.seating-layout {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.row-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 1rem;
+}
+
+.row-label {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.seat-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.seat-icon {
+  width: 30px;
+  height: 25px;
+  border-radius: 5px 5px 0 0;
+}
+
+.seat-available .seat-icon {
+  background-color: #00bcd4;
+}
+
+.seat-sold .seat-icon {
+  background-color: #4caf50;
+}
+
+.seat-selected .seat-icon {
+  background-color: #ffc107;
+}
+
+.seat-number {
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+/* Selected Seats Summary */
+.selected-seats-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  padding: 1rem;
+}
+
+.summary-text {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.book-button {
+  background-color: #ff3d00;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 300px;
+  text-transform: uppercase;
+}
+
+.book-button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .booking-header {
+    padding: 1rem;
+  }
+
+  .progress-indicator {
+    display: none;
+  }
+
+  .booking-tabs {
+    flex-direction: column;
+  }
+
+  .seating-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .row-labels {
+    flex-direction: row;
+    padding: 0.5rem 0;
+  }
+
+  .row-label {
+    width: 40px;
+    height: auto;
+  }
+
+  .seat {
+    width: 30px;
+    height: 30px;
+  }
+
+  .seat-icon {
+    width: 25px;
+    height: 20px;
+  }
+}

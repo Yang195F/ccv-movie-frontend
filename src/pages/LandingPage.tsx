@@ -198,7 +198,7 @@ const CinemaWebsite: React.FC = () => {
           <a href="/food-drinks" className="nav-link">
             FOOD & DRINKS
           </a>
-          <a href="/promotions" className="nav-link">
+          <a href="/booking" className="nav-link">
             PROMOTIONS
           </a>
           <div className="dropdown">
@@ -209,7 +209,7 @@ const CinemaWebsite: React.FC = () => {
           </div>
         </nav>
 
-        <a href="/sign-in" className="sign-in-button">
+        <a href="/login" className="sign-in-button">
           <span className="user-icon">👤</span>
           SIGN IN
         </a>
