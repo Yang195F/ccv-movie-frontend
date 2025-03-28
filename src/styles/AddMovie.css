@@ -1,0 +1,159 @@
+/* General page styling */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 23px; 
+}
+
+/* Main title */
+h2 {
+  text-align: left;
+  color: red;
+  margin-bottom: 23px; 
+  font-size: 28px; 
+}
+
+
+.add-movie-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Movie details: Left (Poster) | Right (Form) */
+.movie-details {
+  display: flex;
+  gap: 26px; 
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Movie poster box */
+.movie-poster {
+  width: 321px; /* Increased by 4px */
+  text-align: center;
+}
+
+.poster-box {
+  width: 100%;
+  height: 461px; /* Increased by 4px */
+  background: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px; /* Reduced by 2px */
+  margin-bottom: 13px; /* Reduced by 2px */
+  overflow: hidden;
+  position: relative;
+}
+
+.poster-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Movie form */
+.movie-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 13px; /* Reduced by 2px */
+}
+
+/* Labels */
+.movie-form label {
+  font-weight: bold;
+  font-size: 19px; /* Reduced by 2px */
+}
+
+/* Inputs & dropdowns */
+.movie-form input,
+.movie-form select {
+  padding: 13px; /* Reduced by 2px */
+  font-size: 19px; /* Reduced by 2px */
+  border-radius: 8px; /* Reduced by 2px */
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #000;
+  width: 201px; /* Reduced by 2px */
+}
+
+/* Schedules & Locations */
+.schedules, .locations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px; /* Reduced by 2px */
+}
+
+.schedules button,
+.locations button {
+  background: gray;
+  color: white;
+  border: none;
+  padding: 13px 18px; /* Reduced by 2px */
+  cursor: pointer;
+  border-radius: 8px; /* Reduced by 2px */
+  transition: background 0.3s;
+  font-size: 19px; /* Reduced by 2px */
+}
+
+.schedules button.selected,
+.locations button.selected {
+  background: red;
+}
+
+/* Ticket price layout */
+.ticket-prices {
+  display: flex;
+  gap: 13px; /* Reduced by 2px */
+}
+
+.ticket-prices div {
+  flex: 1;
+}
+
+.ticket-prices label {
+  display: block;
+  font-weight: bold;
+  font-size: 19px; /* Reduced by 2px */
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 13px; /* Reduced by 2px */
+  margin-top: 23px; /* Reduced by 2px */
+}
+
+.buttons button {
+  flex: 1;
+  padding: 15px; /* Reduced by 2px */
+  border: none;
+  background: red;
+  color: white;
+  font-size: 19px; /* Reduced by 2px */
+  cursor: pointer;
+  border-radius: 8px; /* Reduced by 2px */
+  transition: background 0.3s;
+  width: 50px; 
+  height: 41px; 
+}
+
+.buttons button:hover {
+  background: darkred;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .movie-details {
+    flex-direction: column;
+  }
+
+  .poster-box {
+    height: 300px; /* Increased by 4px */
+  }
+}
