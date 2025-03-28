@@ -199,7 +199,7 @@ const CinemaWebsite: React.FC = () => {
             FOOD & DRINKS
           </a>
           <a href="/booking" className="nav-link">
-            PROMOTIONS
+            TEST BOOKING PAGE
           </a>
           <div className="dropdown">
             <button className="nav-link dropdown-toggle">
