@@ -8,46 +8,46 @@ body {
 }
 
 /* Main title */
-h2 {
+h1 {
   text-align: left;
   color: red;
-  margin-bottom: 23px; 
-  font-size: 28px; 
-}
-
-
-.add-movie-page {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  margin-bottom: 23px;
+  font-size: 50px;
 }
 
 /* Movie details: Left (Poster) | Right (Form) */
 .movie-details {
   display: flex;
-  gap: 26px; 
+  gap: 26px;
   align-items: flex-start;
   width: 100%;
+  flex-wrap: wrap; 
+  margin-top: 20px; 
 }
 
 /* Movie poster box */
 .movie-poster {
-  width: 321px; /* Increased by 4px */
+  flex: 1 1 300px; /* Allow it to grow and shrink but start with 300px width */
   text-align: center;
+  max-width: 350px; /* Set a max width to avoid stretching */
+  margin-top: 100px;
 }
 
 .poster-box {
   width: 100%;
-  height: 461px; /* Increased by 4px */
+  height: 461px;
   background: #fff;
   color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 21px; /* Reduced by 2px */
-  margin-bottom: 13px; /* Reduced by 2px */
+  font-size: 21px;
+  margin-bottom: 13px;
   overflow: hidden;
   position: relative;
+  background-color: lightgray;
+  border: 2px dashed black;
+  cursor: pointer; /* Make the box clickable */
 }
 
 .poster-box img {
@@ -55,6 +55,13 @@ h2 {
   height: 100%;
   object-fit: cover;
 }
+
+.poster-box p {
+  font-size: 18px;
+  color: #888;
+  text-align: center;
+}
+
 
 /* Movie form */
 .movie-form {
@@ -79,7 +86,7 @@ h2 {
   border: 1px solid #ccc;
   background: #fff;
   color: #000;
-  width: 201px; /* Reduced by 2px */
+  width: 250px; /* Reduced by 2px */
 }
 
 /* Schedules & Locations */
@@ -113,7 +120,7 @@ h2 {
 }
 
 .ticket-prices div {
-  flex: 1;
+  flex: 0.5;
 }
 
 .ticket-prices label {
@@ -130,17 +137,16 @@ h2 {
 }
 
 .buttons button {
-  flex: 1;
-  padding: 15px; /* Reduced by 2px */
+  
   border: none;
   background: red;
   color: white;
-  font-size: 19px; /* Reduced by 2px */
+  font-size: 20px; /* Reduced by 2px */
   cursor: pointer;
   border-radius: 8px; /* Reduced by 2px */
   transition: background 0.3s;
-  width: 50px; 
-  height: 41px; 
+  width: 200px; 
+  height: 40px; 
 }
 
 .buttons button:hover {
@@ -154,6 +160,6 @@ h2 {
   }
 
   .poster-box {
-    height: 300px; /* Increased by 4px */
+    height: 300px; /* Increased by 4px */
   }
 }

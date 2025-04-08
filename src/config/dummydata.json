@@ -1,0 +1,13 @@
+{
+    "durations": [
+      { "label": "30 minutes", "value": "30min" },
+      { "label": "1 hour", "value": "1h" },
+      { "label": "1 hour 30 minutes", "value": "1h30min" },
+      { "label": "2 hours", "value": "2h" },
+      { "label": "2 hours 30 minutes", "value": "2h30min" },
+      { "label": "3 hours", "value": "3h" }
+    ],
+    "movieTypes": ["Action", "Comedy", "Drama"],
+    "locations": ["Kuala Lumpur", "Penang", "Johor", "Selangor", "Sabah", "Sarawak"]
+}
+  
