@@ -21,25 +21,7 @@ const MoviesPage: React.FC = () => {
   const [activeExperience, setActiveExperience] = useState<string>("ALL");
   const [showCinemaDropdown, setShowCinemaDropdown] = useState<boolean>(false);
 
-  const experienceTypes = [
-    { id: "all", name: "ALL" },
-    { id: "indulge", name: "INDULGE", subtitle: "COMFY & RELAX" },
-    { id: "imax", name: "IMAX" },
-    { id: "beanie", name: "BEANIE" },
-    { id: "junior", name: "JUNIOR" },
-    { id: "family", name: "FAMILY" },
-    { id: "atmos", name: "ATMOS" },
-    { id: "infinity", name: "INFINITY" },
-    { id: "onyx", name: "ONYX" },
-  ];
-
-  const categories = [
-    "NOW SHOWING",
-    "GEMBIRAYA",
-    "KIDS SPECIAL",
-    "BOOK EARLY",
-    "COMING SOON",
-  ];
+  const categories = ["NOW SHOWING", "BOOK EARLY", "COMING SOON"];
 
   const movies: MovieProps[] = [
     {
@@ -156,26 +138,6 @@ const MoviesPage: React.FC = () => {
           SIGN IN
         </a>
       </header>
-
-      {/* Experience Types */}
-      <div className="experience-types">
-        <div className="experience-container">
-          {experienceTypes.map((type) => (
-            <div
-              key={type.id}
-              className={`experience-type ${
-                activeExperience === type.name ? "active" : ""
-              }`}
-              onClick={() => setActiveExperience(type.name)}
-            >
-              <div className="experience-name">{type.name}</div>
-              {type.subtitle && (
-                <div className="experience-subtitle">{type.subtitle}</div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Movie Categories */}
       <div className="movie-categories">
