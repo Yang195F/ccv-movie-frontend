@@ -1,7 +1,60 @@
-import { MovieProps } from "../interfaces/movies";
-import { CinemaProps } from "../interfaces/cinemas";
-import { Seats } from "../interfaces/seats";
-import { generateMockSeats } from "./generateMockSeats";
+import { generateMockSeats } from "./generateMockSeats"
+
+export interface MovieProps {
+  id: number
+  title: string
+  image: string
+  banner: string
+  rating: string
+  category: string
+  releaseDate: string
+  genre: string
+  languages: string[]
+  duration: string
+  hasBookNow: boolean
+  screenings: {
+    cinema: string
+    sessions: {
+      date: string
+      time: string
+      status: string
+      roomId: string
+    }[]
+  }[]
+}
+
+export interface CinemaProps {
+  id: string
+  name: string
+}
+
+export interface Seats {
+  movieId: number
+  cinema: string
+  date: string
+  time: string
+  seats: {
+    id: string
+    row: string
+    number: number
+    status: "available" | "reserved" | "selected" | "sold"
+  }[]
+}
+
+// Sales report data
+export const salesData = [
+  { month: "Jan", income: 12000 },
+  { month: "Feb", income: 9000 },
+  { month: "Mar", income: 15000 },
+  { month: "Apr", income: 8000 },
+]
+
+// Movie report data
+export const movieReportData = [
+  { movie: "Bad Boys", tickets: 1200 },
+  { movie: "The Martian", tickets: 900 },
+  { movie: "Ghost Busters", tickets: 1500 },
+]
 
 export const mockMovies: MovieProps[] = [
   {
@@ -117,16 +170,16 @@ export const mockMovies: MovieProps[] = [
     hasBookNow: false,
     screenings: [],
   },
-];
+]
 
 export const mockCinemas: CinemaProps[] = [
   { id: "1utama", name: "1 UTAMA" },
   { id: "pavilion", name: "PAVILION BUKIT JALIL" },
   { id: "boulevard", name: "Boulevard Bintulu" },
   { id: "gurney", name: "Gurney Plaza Penang" },
-];
+]
 
 export const mockSeats: Seats[] = [
   generateMockSeats(1, "Boulevard Bintulu", "2025-04-10", "17:00", 10), // Match with session in mockMovies
   generateMockSeats(1, "Pavilion KL", "2025-04-09", "21:30", 5),
-];
+]

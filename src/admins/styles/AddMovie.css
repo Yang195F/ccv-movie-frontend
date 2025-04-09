@@ -7,13 +7,7 @@ body {
   padding: 23px; 
 }
 
-/* Main title */
-h1 {
-  text-align: left;
-  color: red;
-  margin-bottom: 23px;
-  font-size: 50px;
-}
+
 
 /* Movie details: Left (Poster) | Right (Form) */
 .movie-details {

@@ -1,32 +1,46 @@
+/* Slider container */
 .poster-slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 16px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    scroll-behavior: smooth;
-  }
-  
-  .poster-slider::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  .poster-slider::-webkit-scrollbar-thumb {
-    background-color: #8e1616;
-    border-radius: 4px;
-  }
-  
-  .poster-item {
-    min-width: 200px;
-    flex-shrink: 0;
-  }
-  
-  .poster-img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+}
+
+/* Inner container holding the images */
+.poster-slider .flex {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;  /* Enable horizontal scrolling */
+  padding: 10px 0;   /* Add some padding to the left/right */
+  max-width: 100%;   /* Ensure the scrollable area doesn’t extend beyond parent */
+}
+
+/* Styling for each image item */
+.poster-item {
+  min-width: 200px;  /* Ensure a minimum width */
+  max-width: 200px;  /* Ensure the image doesn't exceed this width */
+  flex-shrink: 0;    /* Prevent shrinking of image */
+  text-align: center;
+}
+
+/* Styling for the images */
+.poster-img {
+  width: 100%;  /* Ensure image takes up the full width of its container */
+  height: 200px;  /* Fixed height for uniformity */
+  object-fit: cover;  /* Crop the image to fit the container */
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: styling for horizontal scrollbar */
+.poster-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.poster-slider::-webkit-scrollbar-thumb {
+  background-color: #8e1616;
+  border-radius: 4px;
+}
