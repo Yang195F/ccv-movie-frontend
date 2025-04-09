@@ -1,0 +1,24 @@
+/* Full-page layout container */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  
+  /* Chart row with left & right charts side by side */
+  .charts-row {
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+  }
+  
+  /* Movie section with filter and poster slider stacked */
+  .movie-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  

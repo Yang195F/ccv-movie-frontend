@@ -1,0 +1,32 @@
+.poster-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    scroll-behavior: smooth;
+  }
+  
+  .poster-slider::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .poster-slider::-webkit-scrollbar-thumb {
+    background-color: #8e1616;
+    border-radius: 4px;
+  }
+  
+  .poster-item {
+    min-width: 200px;
+    flex-shrink: 0;
+  }
+  
+  .poster-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  

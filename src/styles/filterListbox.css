@@ -1,0 +1,28 @@
+.filter-listbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background-color: #f4f4f4;
+    padding: 16px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .filter-button {
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: none;
+    background-color: #8e1616;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter-button:hover {
+    background-color: #d84040;
+  }
+  
