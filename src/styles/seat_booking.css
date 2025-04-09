@@ -1,0 +1,86 @@
+.seat-booking-container {
+  background: black;
+  color: white;
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+.booking-header {
+  margin-bottom: 1.5rem;
+}
+
+.showtime-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.showtime-btn {
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: #0f0;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.legend-bar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+}
+
+.screen-view {
+  border-top: 4px solid white;
+  width: 60%;
+  margin: 1rem auto 2rem;
+  padding-top: 0.5rem;
+  font-weight: bold;
+}
+
+.seat-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.seat-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: #663399;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.seat.sold {
+  background: red;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background: #22c55e;
+}
+
+.book-btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: darkred;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}

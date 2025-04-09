@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/AddMovie.css";
 import dummyData from "../config/dummydata.json";
+import Navbar from "../components/Navbar";
 
 const AddMovie = () => {
   const [poster, setPoster] = useState<string | null>(null);
