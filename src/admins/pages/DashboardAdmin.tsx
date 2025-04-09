@@ -1,10 +1,10 @@
 import React from "react";
-import NavbarAdmin from "../components/NavbarAdmin";
-import ChartLeft from "../components/ChartLeft";
-import ChartRight from "../components/ChartRight";
-import FilterListbox from "../components/FilterListbox";
-import PosterSlider from "../components/PosterSlider";
-import "../styles/dashboard.css"; 
+import NavbarAdmin from "../../components/NavbarAdmin";
+import ChartLeft from "../../components/ChartLeft";
+import ChartRight from "../../components/ChartRight";
+import FilterListbox from "../../components/FilterListbox";
+import PosterSlider from "../../components/PosterSlider";
+import "../styles/dashboard.css";
 
 const DashboardAdmin: React.FC = () => {
   return (
