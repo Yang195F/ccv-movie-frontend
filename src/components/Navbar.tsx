@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/navbar.css";
+import "../users/styles/navbar.css";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();

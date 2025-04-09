@@ -1,6 +1,7 @@
 import { MovieProps } from "../interfaces/movies";
 import { CinemaProps } from "../interfaces/cinemas";
-import { ShowtimeSeats } from "../interfaces/showtime_seats";
+import { Seats } from "../interfaces/seats";
+import { generateMockSeats } from "./generateMockSeats";
 
 export const mockMovies: MovieProps[] = [
   {
@@ -17,19 +18,49 @@ export const mockMovies: MovieProps[] = [
     hasBookNow: true,
     screenings: [
       {
-        cinema: "Boulevard Bintulu",
+        cinema: "Pavilion KL",
         sessions: [
-          { date: "2025-04-08", time: "13:00" },
-          { date: "2025-04-08", time: "15:30" },
-          { date: "2025-04-09", time: "20:15" },
+          {
+            date: "2025-04-08",
+            time: "13:00",
+            status: "available",
+            roomId: "room1",
+          },
+          {
+            date: "2025-04-09",
+            time: "15:30",
+            status: "selling fast",
+            roomId: "room1",
+          },
+          {
+            date: "2025-04-09",
+            time: "20:15",
+            status: "sold out",
+            roomId: "room2",
+          },
         ],
       },
       {
-        cinema: "Pavilion KL",
+        cinema: "Boulevard Bintulu",
         sessions: [
-          { date: "2025-04-08", time: "12:45" },
-          { date: "2025-04-08", time: "17:00" },
-          { date: "2025-04-08", time: "21:30" },
+          {
+            date: "2025-04-09",
+            time: "12:45",
+            status: "available",
+            roomId: "room3",
+          },
+          {
+            date: "2025-04-10",
+            time: "17:00",
+            status: "available",
+            roomId: "room3",
+          },
+          {
+            date: "2025-04-09",
+            time: "21:30",
+            status: "sold out",
+            roomId: "room3",
+          },
         ],
       },
     ],
@@ -48,11 +79,26 @@ export const mockMovies: MovieProps[] = [
     hasBookNow: true,
     screenings: [
       {
-        cinema: "1 Utama",
+        cinema: "Pavillion KL",
         sessions: [
-          { date: "2025-04-08", time: "11:00" },
-          { date: "2025-04-08", time: "14:00" },
-          { date: "2025-04-08", time: "18:45" },
+          {
+            date: "2025-04-09",
+            time: "11:00",
+            status: "available",
+            roomId: "roomA",
+          },
+          {
+            date: "2025-04-09",
+            time: "14:00",
+            status: "selling fast",
+            roomId: "roomA",
+          },
+          {
+            date: "2025-04-10",
+            time: "18:45",
+            status: "selling fast",
+            roomId: "roomB",
+          },
         ],
       },
     ],
@@ -80,21 +126,7 @@ export const mockCinemas: CinemaProps[] = [
   { id: "gurney", name: "Gurney Plaza Penang" },
 ];
 
-export const showtimeSeats: ShowtimeSeats[] = [
-  {
-    movieId: 2,
-    cinema: "1 Utama",
-    date: "2025-04-09",
-    time: "12:30 PM",
-    seats: [
-      { id: "A1", row: "A", number: 1, status: "available" },
-      { id: "A2", row: "A", number: 2, status: "sold" },
-      { id: "A3", row: "A", number: 3, status: "available" },
-      { id: "A4", row: "A", number: 4, status: "available" },
-      { id: "B1", row: "B", number: 1, status: "sold" },
-      { id: "C2", row: "C", number: 2, status: "available" },
-      // ... more
-    ],
-  },
-  // Add more showtimes here...
+export const mockSeats: Seats[] = [
+  generateMockSeats(1, "Boulevard Bintulu", "2025-04-10", "17:00", 10), // Match with session in mockMovies
+  generateMockSeats(1, "Pavilion KL", "2025-04-09", "21:30", 5),
 ];

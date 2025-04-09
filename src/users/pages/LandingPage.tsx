@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import "../styles/landing_page.css";
 
-import { MovieProps } from "../interfaces/movies";
-import { CinemaProps } from "../interfaces/cinemas";
-import { mockCinemas, mockMovies } from "../data/mockData";
+import { MovieProps } from "../../interfaces/movies";
+import { CinemaProps } from "../../interfaces/cinemas";
+import { mockCinemas, mockMovies } from "../../data/mockData";
 
 const CinemaWebsite: React.FC = () => {
   const navigate = useNavigate();

@@ -1,12 +1,26 @@
+import React from "react";
+
 interface ScreenHeaderProps {
-  title: string;
+  movieTitle: string;
+  cinema: string;
+  date: string;
+  time: string;
 }
 
-const ScreenHeader: React.FC<ScreenHeaderProps> = ({ title }) => {
+const ScreenHeader: React.FC<ScreenHeaderProps> = ({
+  movieTitle,
+  cinema,
+  date,
+  time,
+}) => {
   return (
-    <header>
-      <h1>{title || "Placeholder Title"}</h1>
-    </header>
+    <div className="screen-header">
+      <h2>{movieTitle}</h2>
+      <p>
+        {cinema} | {new Date(date).toDateString()} at {time}
+      </p>
+      <div className="screen-label">SCREEN</div>
+    </div>
   );
 };
 

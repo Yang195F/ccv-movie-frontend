@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages_styles.css";
-import InputField from "../components/InputField";
-import { login } from "../services/authService";
+import InputField from "../../components/InputField";
+import { login } from "../../services/authService";
 
 const LoginPage: React.FC = () => {
   const [userId, setUserId] = useState("");

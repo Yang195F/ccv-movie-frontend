@@ -44,3 +44,34 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+//TODO
+ensure date time is correct and only show today's showtime, also do it in backed but for now do we do it in front end so need to change when integrating backend
+
+selling status: calculate in backend interms of seat so ensure that the seats if fully booked: sold out, if alomst full: seling fast and if still available available, then pass to status: as string to
+
+##for visualization
+🎬 MovieProps
+└── 🏢 screenings: [
+{
+cinema: "Boulevard Bintulu", ⬅️ CinemaProps.name
+sessions: [
+{
+date: "2025-04-08",
+time: "13:00",
+roomId: "room1", ⬅️ CinemaRoomProps.id
+status: "available"
+}
+]
+}
+]
+
+       ##AND FOR THIS SPECIFIC SHOWTIME
+
+       Seats {
+         movieId: 1,
+         cinema: "Boulevard Bintulu",
+         date: "2025-04-08",
+         time: "13:00",
+         seats: [ SeatProps[] ]
+       }
