@@ -20,7 +20,7 @@ const NavbarAdmin: React.FC = () => {
         <a className="nav-link" onClick={() => navigate("/manageshow")}>
           🎭 Manage Show
         </a>
-        <a className="nav-link" onClick={() => navigate("/managebooking")}>
+        <a className="nav-link" onClick={() => navigate("/bookingmanagement")}>
           🎫 Manage Booking
         </a>
         <a className="nav-link" onClick={() => navigate("/monthlyreport")}>

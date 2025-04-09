@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NavbarAdmin from "../../components/NavbarAdmin";
 import "../styles/BookingManagement.css";
 
 const BookingManagement = () => {
@@ -38,7 +39,7 @@ const BookingManagement = () => {
 
   return (
     <div className="booking-management">
-      <h1 className="header">Booking Management</h1>
+      <NavbarAdmin />
       <div className="controls">
         <select onChange={(e) => setSelectedMovie(e.target.value)}>
           <option>Select Movie</option>

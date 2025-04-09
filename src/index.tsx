@@ -7,6 +7,7 @@ import AddMovie from "./admins/pages/AddMovie";
 import ManageShow from "./admins/pages/ManageShowTime";
 import BookingManagement from "./admins/pages/BookingManagement";
 import DashboardAdmin from "./admins/pages/DashboardAdmin";
+import MonthlyReport from "./admins/pages/MonthlyReport";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,6 +22,7 @@ root.render(
         <Route path="/manageshow" element={<ManageShow />} />
         <Route path="/bookingmanagement" element={<BookingManagement />} />
         <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+        <Route path="/monthlyreport" element={<MonthlyReport />} />
       </Routes>
     </Router>
   </React.StrictMode>

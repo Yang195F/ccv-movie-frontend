@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NavbarAdmin from "../../components/NavbarAdmin";
 import "../styles/ManageShowTime.css";
 
 const ManageShow = () => {
@@ -32,8 +33,7 @@ const ManageShow = () => {
 
   return (
     <div className="manage-show">
-      <h1>Manage Showtime</h1>
-
+      <NavbarAdmin />
       <div className="form-group">
         <label>Movie Name:</label>
         <select className="form-select" onChange={(e) => setSelectedMovie(e.target.value)}>
@@ -45,7 +45,7 @@ const ManageShow = () => {
       </div>
 
       <div className="movie-poster">
-        {selectedMovie ? `Poster for ${selectedMovie}` : "Display first movie poster, if select other movie will change to the selected movie poster"}
+        {selectedMovie ? `Poster for ${selectedMovie}` : "No Image"}
       </div>
 
       <div className="form-group">
