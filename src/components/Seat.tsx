@@ -1,5 +1,6 @@
-import React from "react";
+import { FC } from "react";
 import { SeatProps as SeatData } from "../interfaces/seats"; // alias to avoid name clash
+import "../users/styles/seat.css"; // Assuming you have a CSS file for styling
 
 interface SeatComponentProps {
   seat: SeatData;
@@ -7,19 +8,21 @@ interface SeatComponentProps {
   onClick: () => void;
 }
 
-const Seat: React.FC<SeatComponentProps> = ({ seat, isSelected, onClick }) => {
-  const className = `seat ${
-    seat.status === "sold" ? "sold" : isSelected ? "selected" : "available"
-  }`;
+const Seat: FC<SeatComponentProps> = ({ seat, isSelected, onClick }) => {
+  const getClassName = () => {
+    if (seat.status === "sold") return "seat-icon sold";
+    if (isSelected) return "seat-icon selected";
+    return "seat-icon available";
+  };
 
   return (
-    <button
-      className={className}
-      onClick={onClick}
-      disabled={seat.status === "sold"}
-    >
-      {seat.id}
-    </button>
+    <div className="seat-wrapper" onClick={onClick}>
+      <img
+        src={"../assets/icons/seat.svg"}
+        alt="Seat Icon"
+        className={getClassName()}
+      />
+    </div>
   );
 };
 

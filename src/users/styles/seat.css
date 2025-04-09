@@ -1,27 +1,43 @@
-/* Seat.css */
-.seat {
-  width: 28px;
-  height: 28px;
-  margin: 4px;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 0.7rem;
-  line-height: 28px;
+.seat-icon {
+  width: 50px;
+  height: 50px;
+  margin: 30px; /* spacing between seats */
   cursor: pointer;
-  user-select: none;
+  transition: all 0.25s ease;
 }
 
-.seat.available {
-  background-color: #4ade80;
+/* STATUS COLORS */
+.seat-icon.available {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(75%) saturate(559%)
+    hue-rotate(70deg) brightness(99%) contrast(88%);
 }
 
-.seat.selected {
-  background-color: #60a5fa;
+.seat-icon.selected {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(76%) saturate(584%)
+    hue-rotate(4deg) brightness(105%) contrast(105%);
 }
 
-.seat.sold {
-  background-color: #ef4444;
+.seat-icon.sold {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(95%) saturate(5789%)
+    hue-rotate(357deg) brightness(94%) contrast(105%);
   cursor: not-allowed;
+}
+
+/* HOVER EFFECT (only for available seats) */
+.seat-icon.available:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px #00ff6a); /* green glow */
+}
+
+/* GLOW for selected */
+.seat-icon.selected {
+  filter: drop-shadow(0 0 6px #ffd700); /* yellow glow */
+}
+
+/* Optional: make sold look darker */
+.seat-icon.sold {
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 /* ScreenHeader.css */

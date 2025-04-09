@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
     <header className="header">
       <div className="header-left">
         <a href="/" className="logo">
-          <img src="/assets/logo.png" alt="Logo" className="logo-img" />
+          <img src="../assets/icons/logo.png" alt="Logo" className="logo-img" />
         </a>
       </div>
 
@@ -25,11 +25,8 @@ const Navbar: React.FC = () => {
         <a href="/cinemas" className="nav-link">
           CINEMAS
         </a>
-        <a href="/food-drinks" className="nav-link">
-          FOOD & DRINKS
-        </a>
-        <a href="/promotions" className="nav-link">
-          PROMOTIONS
+        <a href="/about" className="nav-link">
+          ABOUT US
         </a>
         <a href="/login" className="sign-in-button">
           👤 SIGN IN
