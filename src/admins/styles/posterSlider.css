@@ -1,46 +1,39 @@
-/* Slider container */
+/* src/styles.css */
 .poster-slider {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  background-color: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
-/* Inner container holding the images */
-.poster-slider .flex {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;  /* Enable horizontal scrolling */
-  padding: 10px 0;   /* Add some padding to the left/right */
-  max-width: 100%;   /* Ensure the scrollable area doesn’t extend beyond parent */
-}
-
-/* Styling for each image item */
 .poster-item {
-  min-width: 200px;  /* Ensure a minimum width */
-  max-width: 200px;  /* Ensure the image doesn't exceed this width */
-  flex-shrink: 0;    /* Prevent shrinking of image */
-  text-align: center;
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-/* Styling for the images */
-.poster-img {
-  width: 100%;  /* Ensure image takes up the full width of its container */
-  height: 200px;  /* Fixed height for uniformity */
-  object-fit: cover;  /* Crop the image to fit the container */
+.poster-item:hover {
+  transform: scale(1.05);
+}
+
+.poster-image img {
+  width: 100%;
+  height: auto;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Optional: styling for horizontal scrollbar */
-.poster-slider::-webkit-scrollbar {
-  height: 8px;
+.poster-placeholder {
+  width: 200px;
+  height: 300px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
 
-.poster-slider::-webkit-scrollbar-thumb {
-  background-color: #8e1616;
-  border-radius: 4px;
+.update-movie-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }

@@ -1,58 +1,55 @@
-import type React from "react"
-import { mockMovies } from "../data/mockData"
-
+// src/components/PosterSlider.tsx
+import React from "react";
+import { Link } from "react-router-dom";
+import { mockMovies } from "../data/mockData";
+import "../admins/styles/posterSlider.css";
 interface PosterSliderProps {
-  filter: string
+  filter: string;
 }
 
 const PosterSlider: React.FC<PosterSliderProps> = ({ filter }) => {
-  // Filter movies based on the selected filter
   const getFilteredMovies = () => {
-    const currentDate = new Date().toISOString().split("T")[0]
+    const currentDate = new Date().toISOString().split("T")[0];
 
     switch (filter) {
       case "today":
-        return mockMovies.filter((movie) => movie.releaseDate === currentDate)
+        return mockMovies.filter((movie) => movie.releaseDate === currentDate);
       case "upcoming":
-        return mockMovies.filter((movie) => movie.releaseDate > currentDate)
+        return mockMovies.filter((movie) => movie.releaseDate > currentDate);
       case "outdated":
-        return mockMovies.filter((movie) => movie.releaseDate < currentDate)
+        return mockMovies.filter((movie) => movie.releaseDate < currentDate);
       default:
-        return mockMovies
+        return mockMovies;
     }
-  }
+  };
 
-  const filteredMovies = getFilteredMovies()
+  const filteredMovies = getFilteredMovies();
 
   return (
-    <>
+    <div className="poster-slider">
       {filteredMovies.map((movie) => (
-        <div key={movie.id} className="poster-item">
+        <Link
+          to={`/updatemovie/${movie.id}`}
+          key={movie.id}
+          className="poster-item"
+        >
           <div className="poster-image">
             <img src={movie.image || "/placeholder.svg"} alt={movie.title} />
           </div>
-        </div>
+        </Link>
       ))}
 
-      {/* If no movies match the filter, show placeholders */}
       {filteredMovies.length === 0 && (
         <>
-          <div className="poster-item">
-            <div className="poster-placeholder">Image1.png</div>
-          </div>
-          <div className="poster-item">
-            <div className="poster-placeholder">Image2.png</div>
-          </div>
-          <div className="poster-item">
-            <div className="poster-placeholder">Image3.png</div>
-          </div>
-          <div className="poster-item">
-            <div className="poster-placeholder">Image4.png</div>
-          </div>
+          {[1, 2, 3, 4].map((num) => (
+            <div key={num} className="poster-item">
+              <div className="poster-placeholder">Image{num}.png</div>
+            </div>
+          ))}
         </>
       )}
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default PosterSlider
+export default PosterSlider;

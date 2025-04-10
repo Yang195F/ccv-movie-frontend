@@ -8,7 +8,7 @@ const MonthlyReport: React.FC = () => {
     return (
         <div className="dashboard-page">
             <NavbarAdmin />
-            <div className="dashboard-content">
+            <div className="chart">
                 {/* Charts Row */}
                 <div className="charts-container">
                     <div className="chart-box">
