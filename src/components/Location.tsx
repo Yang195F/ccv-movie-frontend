@@ -15,6 +15,7 @@ const Locations: React.FC<CinemaLocationsProps> = ({ selectedLocations, setSelec
 
   return (
     <div className="locations">
+      <label>Location :</label>
       {mockCinemas.map((cinema) => (
         <button
           key={cinema.name}

@@ -48,13 +48,13 @@ const MovieForm: React.FC<MovieFormProps> = ({
 
   return (
     <div className="movie-form">
-      <label>Movie Name:</label>
+      <label>Movie Name :</label>
       <input type="text" value={movieName} onChange={(e) => setMovieName(e.target.value)} />
 
-      <label>Release Date:</label>
+      <label>Release Date :</label>
       <input type="date" value={releaseDate} onChange={(e) => setReleaseDate(e.target.value)} />
 
-      <label>End Date:</label>
+      <label>End Date :</label>
       <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
 
       <label htmlFor="durations">Durations:</label>
@@ -66,7 +66,7 @@ const MovieForm: React.FC<MovieFormProps> = ({
         ))}
       </select>
 
-      <label>Movie Type:</label>
+      <label>Movie Type :</label>
       <select value={movieType} onChange={(e) => setMovieType(e.target.value)}>
         <option value="">Select a movie type</option>
         <option value="Action">Action</option>
@@ -74,7 +74,7 @@ const MovieForm: React.FC<MovieFormProps> = ({
         <option value="Drama">Drama</option>
       </select>
 
-      <label>Select Language:</label>
+      <label>Select Language :</label>
       <div className="languages">
         {languages.map((language) => (
           <button

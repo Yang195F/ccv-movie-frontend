@@ -4,6 +4,7 @@ import MoviePoster from "../../components/PosterUpload";
 import MovieForm from "../../components/MovieForm";
 import TicketPrices from "../../components/TicketPrice";
 import CinemaLocations from "../../components/Location";
+import "../styles/AddMovie.css";
 
 const AddMovie = () => {
   const [poster, setPoster] = useState<string | null>(null);
@@ -41,6 +42,12 @@ const AddMovie = () => {
           setLanguagesSelected={setLanguagesSelected}
         />
 
+        {/* Cinema Locations */}
+        <CinemaLocations
+          selectedLocations={selectedLocations}
+          setSelectedLocations={setSelectedLocations}
+        />
+
         {/* Ticket Prices */}
         <TicketPrices
           ticketPriceAdult={ticketPriceAdult}
@@ -51,11 +58,7 @@ const AddMovie = () => {
           setTicketPriceOKU={setTicketPriceOKU}
         />
 
-        {/* Cinema Locations */}
-        <CinemaLocations
-          selectedLocations={selectedLocations}
-          setSelectedLocations={setSelectedLocations}
-        />
+        
 
         <div className="buttons">
           <button>Add Movie</button>

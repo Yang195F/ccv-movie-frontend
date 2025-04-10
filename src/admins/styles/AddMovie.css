@@ -1,159 +1,180 @@
-/* General page styling */
-body {
+/* Main page styling */
+.add-movie-page {
   background-color: #000;
-  color: #fff;
+  color: white;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 23px; 
+  padding-bottom: 40px;
 }
 
-
-
-/* Movie details: Left (Poster) | Right (Form) */
+/* Movie details container */
 .movie-details {
-  display: flex;
-  gap: 26px;
-  align-items: flex-start;
-  width: 100%;
-  flex-wrap: wrap; 
-  margin-top: 20px; 
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 30px;
 }
 
-/* Movie poster box */
+/* Movie poster styling */
 .movie-poster {
-  flex: 1 1 300px; /* Allow it to grow and shrink but start with 300px width */
-  text-align: center;
-  max-width: 350px; /* Set a max width to avoid stretching */
-  margin-top: 100px;
-}
-
-.poster-box {
-  width: 100%;
-  height: 461px;
-  background: #fff;
-  color: #000;
+  grid-row: span 3;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 21px;
-  margin-bottom: 13px;
-  overflow: hidden;
-  position: relative;
-  background-color: lightgray;
-  border: 2px dashed black;
-  cursor: pointer; /* Make the box clickable */
+  color: #888;
 }
 
-.poster-box img {
+.poster-upload {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.poster-box p {
-  font-size: 18px;
-  color: #888;
-  text-align: center;
-}
-
-
-/* Movie form */
-.movie-form {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 13px; /* Reduced by 2px */
+  align-items: center;
+  justify-content: center;
 }
 
-/* Labels */
+/* Form styling */
+.movie-form {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 15px;
+  align-items: center;
+}
+
 .movie-form label {
-  font-weight: bold;
-  font-size: 19px; /* Reduced by 2px */
+  text-align: right;
+  font-weight: normal;
 }
 
-/* Inputs & dropdowns */
 .movie-form input,
 .movie-form select {
-  padding: 13px; /* Reduced by 2px */
-  font-size: 19px; /* Reduced by 2px */
-  border-radius: 8px; /* Reduced by 2px */
-  border: 1px solid #ccc;
-  background: #fff;
-  color: #000;
-  width: 250px; /* Reduced by 2px */
-}
-
-/* Schedules & Locations */
-.schedules, .locations {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px; /* Reduced by 2px */
-}
-
-.schedules button,
-.locations button {
-  background: gray;
-  color: white;
+  background-color: white;
   border: none;
-  padding: 13px 18px; /* Reduced by 2px */
+  padding: 8px 10px;
+  width: 100%;
+}
+
+/* Language selection */
+.languages {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.language-option {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 5px 15px;
   cursor: pointer;
-  border-radius: 8px; /* Reduced by 2px */
-  transition: background 0.3s;
-  font-size: 19px; /* Reduced by 2px */
 }
 
-.schedules button.selected,
-.locations button.selected {
-  background: red;
+.language-option.selected {
+  background-color: #ff3333;
+  color: white;
 }
 
-/* Ticket price layout */
+/* Location selection */
+.cinema-locations {
+  margin-top: 20px;
+}
+
+.locations {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.location-option {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.location-option.selected {
+  background-color: #ff3333;
+  color: white;
+}
+
+/* Ticket prices */
 .ticket-prices {
-  display: flex;
-  gap: 13px; /* Reduced by 2px */
+  margin-top: 20px;
 }
 
-.ticket-prices div {
-  flex: 0.5;
+.price-input {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.ticket-prices label {
-  display: block;
-  font-weight: bold;
-  font-size: 19px; /* Reduced by 2px */
+.price-input label {
+  text-align: right;
 }
 
-/* Buttons */
+.price-input input {
+  background-color: white;
+  border: none;
+  padding: 8px 10px;
+}
+
+/* Add Movie button */
 .buttons {
+  grid-column: 1 / -1;
   display: flex;
-  gap: 13px; /* Reduced by 2px */
-  margin-top: 23px; /* Reduced by 2px */
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .buttons button {
-  
-  border: none;
-  background: red;
+  background-color: #ff0000;
   color: white;
-  font-size: 20px; /* Reduced by 2px */
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 8px; /* Reduced by 2px */
-  transition: background 0.3s;
-  width: 200px; 
-  height: 40px; 
+  font-size: 16px;
 }
 
 .buttons button:hover {
-  background: darkred;
+  background-color: #cc0000;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .movie-details {
-    flex-direction: column;
-  }
+/* Navbar styling */
+.navbar-admin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  border-bottom: 1px solid #333;
+}
 
-  .poster-box {
-    height: 300px; /* Increased by 4px */
-  }
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-link.active {
+  color: #ff3333;
 }

@@ -19,6 +19,7 @@ const TicketPrices: React.FC<TicketPricesProps> = ({
 }) => {
   return (
     <div className="ticket-prices">
+      <label>Ticket Price :</label>
       <div>
         <label>Adult:</label>
         <input type="text" value={ticketPriceAdult} onChange={(e) => setTicketPriceAdult(e.target.value)} />

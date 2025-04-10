@@ -1,61 +1,88 @@
-body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-  }
-  
-  .header {
-    color: red;
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  select, input {
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  .seat-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .seat-row {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .seat {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .available {
-    background-color: green;
-  }
-  
-  .reserved {
-    background-color: yellow;
-    color: black;
-  }
-  
-  .purchased {
-    background-color: red;
-    color: white;
-    pointer-events: none;
-  }
-  
+/* BookingManagement.css */
+.booking-management {
+  padding: 20px;
+}
+
+.screen-label {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.seat-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.seat-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.row-label {
+  min-width: 50px;
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.seat-container {
+  position: relative;
+}
+
+.reserved-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: orange;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.legend-color.available {
+  background-color: #4CAF50;
+}
+
+.legend-color.reserved {
+  background-color: #FF9800;
+}
+
+.legend-color.sold {
+  background-color: #F44336;
+}
+
+.legend-color.selected {
+  background-color: #2196F3;
+}
