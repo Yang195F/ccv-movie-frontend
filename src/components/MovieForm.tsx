@@ -79,7 +79,7 @@ const MovieForm: React.FC<MovieFormProps> = ({
         {languages.map((language) => (
           <button
             key={language}
-            className={languagesSelected.includes(language) ? "selected" : ""}
+            className={`language-option ${languagesSelected.includes(language) ? "selected" : ""}`}
             onClick={() => toggleLanguage(language)}
           >
             {language}

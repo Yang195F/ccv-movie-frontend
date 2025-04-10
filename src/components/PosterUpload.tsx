@@ -1,28 +1,32 @@
-import React from "react";
+import React from 'react';
 
 interface PosterUploadProps {
   poster: string | null;
-  setPoster: React.Dispatch<React.SetStateAction<string | null>>;
+  setPoster: (url: string | null) => void;
 }
 
 const PosterUpload: React.FC<PosterUploadProps> = ({ poster, setPoster }) => {
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPoster(reader.result as string); // Set the poster using setPoster
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleUrlInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPoster(e.target.value);
   };
 
   return (
-    <div className="movie-poster">
-      <div className="poster-box" onClick={() => document.getElementById("file-input")?.click()}>
-        {poster ? <img src={poster} alt="Movie Poster" className="poster-preview" /> : <p>No Image</p>}
+    <div className="poster-upload">
+      <div className="input-group">
+        <label>Image Link:</label>
+        <input
+          type="text"
+          onChange={handleUrlInput}
+          value={poster || ''}
+        />
       </div>
-      <input id="file-input" type="file" accept="image/*" onChange={handleImageChange} style={{ display: "none" }} />
+      <div className="preview-container">
+        {poster ? (
+          <img src={poster} alt="Movie poster preview" />
+        ) : (
+          <span>Movie Poster</span>
+        )}
+      </div>
     </div>
   );
 };

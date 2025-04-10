@@ -17,25 +17,51 @@
   gap: 30px;
 }
 
-/* Movie poster styling */
-.movie-poster {
-  grid-row: span 3;
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
+/* Movie Poster Styling */
+.poster-upload {
+  width: 300px;
+  margin-left: -40px;
 }
 
-.poster-upload {
-  width: 100%;
-  height: 100%;
+.input-group {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  color: white;
+  white-space: nowrap;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 4px 8px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.preview-container {
+  width: 300px;
+  height: 400px;
+  background: white;
+  border: 1px solid #ccc;
+  display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.preview-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-container span {
+  color: #666;
 }
 
 /* Form styling */

@@ -1,5 +1,5 @@
 import React from "react";
-import { mockCinemas } from "../data/mockData"
+import { mockCinemas } from "../data/mockData";
 
 interface CinemaLocationsProps {
   selectedLocations: string[];
@@ -14,17 +14,19 @@ const Locations: React.FC<CinemaLocationsProps> = ({ selectedLocations, setSelec
   };
 
   return (
-    <div className="locations">
+    <div className="cinema-locations">
       <label>Location :</label>
-      {mockCinemas.map((cinema) => (
-        <button
-          key={cinema.name}
-          className={selectedLocations.includes(cinema.name) ? "selected" : ""}
-          onClick={() => toggleLocation(cinema.name)}
-        >
-          {cinema.name}
-        </button>
-      ))}
+      <div className="locations">
+        {mockCinemas.map((cinema) => (
+          <button
+            key={cinema.name}
+            className={`location-option ${selectedLocations.includes(cinema.name) ? "selected" : ""}`}
+            onClick={() => toggleLocation(cinema.name)}
+          >
+            {cinema.name}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
