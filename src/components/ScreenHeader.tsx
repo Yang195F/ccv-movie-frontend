@@ -17,9 +17,9 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
     <div className="screen-header">
       <h2>{movieTitle}</h2>
       <p>
-        {cinema} | {new Date(date).toDateString()} at {time}
+        {cinema} | {date} {time}
       </p>
-      <div className="screen-label">SCREEN</div>
+      <div className="screen-line"></div>
     </div>
   );
 };

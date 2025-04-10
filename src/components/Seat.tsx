@@ -1,6 +1,6 @@
+// Seat.tsx
 import { FC } from "react";
-import { SeatProps as SeatData } from "../interfaces/seats"; // alias to avoid name clash
-import "../users/styles/seat.css"; // Assuming you have a CSS file for styling
+import { SeatProps as SeatData } from "../interfaces/seats";
 
 interface SeatComponentProps {
   seat: SeatData;
@@ -18,8 +18,8 @@ const Seat: FC<SeatComponentProps> = ({ seat, isSelected, onClick }) => {
   return (
     <div className="seat-wrapper" onClick={onClick}>
       <img
-        src={"../assets/icons/seat.svg"}
-        alt="Seat Icon"
+        src="../assets/icons/seat.svg"
+        alt="Seat"
         className={getClassName()}
       />
     </div>

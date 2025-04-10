@@ -1,18 +1,18 @@
-// components/SeatLegend.tsx
-import React from "react";
-import "../users/styles/seat_legend.css";
-
-const SeatLegend: React.FC = () => {
+// SeatLegend.tsx
+const SeatLegend = () => {
   return (
     <div className="seat-legend">
       <div className="legend-item">
-        <div className="seat available" /> Available
+        <div className="legend-box legend-available" />
+        <span>Available</span>
       </div>
       <div className="legend-item">
-        <div className="seat selected" /> Selected
+        <div className="legend-box legend-selected" />
+        <span>Selected</span>
       </div>
       <div className="legend-item">
-        <div className="seat sold" /> Sold
+        <div className="legend-box legend-sold" />
+        <span>Sold</span>
       </div>
     </div>
   );

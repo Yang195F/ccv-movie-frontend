@@ -1,32 +1,39 @@
-"use client";
-
-import { useSearchParams, useParams, useNavigate } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { mockMovies, mockSeats } from "../../data/mockData";
-import ScreenHeader from "../../components/ScreenHeader";
 import Seat from "../../components/Seat";
 import SeatLegend from "../../components/SeatLegend";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import ScreenHeader from "../../components/ScreenHeader";
 import "../styles/seat_booking.css";
 
 const SeatBookingPage = () => {
-  const { id } = useParams(); // movie ID
-  const [searchParams] = useSearchParams(); // ✅ Destructure correctly
+  const { id } = useParams();
+  const [searchParams] = useSearchParams();
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
-  const cinema = searchParams.get("cinema");
-  const date = searchParams.get("date");
-  const time = searchParams.get("time");
+  const selectedDate = searchParams.get("date") ?? "";
+  const selectedTime = searchParams.get("time") ?? "";
+  const cinemaName = searchParams.get("cinema") ?? "";
+
+  const movie = mockMovies.find((m) => m.id === Number(id));
 
   const showtime = mockSeats.find(
     (s) =>
       s.movieId === Number(id) &&
-      s.cinema === cinema &&
-      s.date === date &&
-      s.time === time
+      s.cinema === cinemaName &&
+      s.date === selectedDate &&
+      s.time === selectedTime
   );
+
+  const matchedSession = movie?.screenings
+    ?.find((screening) => screening.cinema === cinemaName)
+    ?.sessions?.find(
+      (session) =>
+        session.date === selectedDate && session.time === selectedTime
+    );
+
+  const roomName = matchedSession?.roomId ?? "Room Unknown";
 
   const handleToggle = (seatId: string) => {
     setSelectedSeats((prev) =>
@@ -35,27 +42,45 @@ const SeatBookingPage = () => {
         : [...prev, seatId]
     );
   };
-  const movie = mockMovies.find((m) => m.id === Number(id));
 
   if (!movie || !showtime) {
-    return (
-      <>
-        <Navbar />
-        <div className="not-found">Showtime not found.</div>
-        <Footer />
-      </>
-    );
+    return <div className="not-found">Showtime not found.</div>;
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="seat-booking-container">
+    <div className="booking-root">
+      <div
+        className="booking-banner"
+        style={{ backgroundImage: `url(${movie.banner})` }}
+      >
+        <div className="booking-overlay">
+          <div className="booking-header">
+            <img src="/logo.svg" alt="Logo" className="booking-logo" />
+            <div className="booking-steps">
+              <span className="step active">1. SELECT SEATS</span>
+              <span className="step">2. CHECKOUT</span>
+            </div>
+          </div>
+          <div className="movie-info">
+            <h2>{movie.title}</h2>
+            <p>
+              {movie.genre} | {movie.duration} | {movie.languages.join(", ")}
+            </p>
+            <p>
+              {cinemaName} | {roomName} | {selectedDate} {selectedTime}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="seat-section">
+        <div className="screen-curve">SCREEN</div>
+
         <ScreenHeader
           movieTitle={movie.title}
-          cinema={showtime.cinema}
-          date={showtime.date}
-          time={showtime.time}
+          cinema={cinemaName}
+          date={selectedDate}
+          time={selectedTime}
         />
 
         <SeatLegend />
@@ -72,22 +97,19 @@ const SeatBookingPage = () => {
             />
           ))}
         </div>
-
-        <div className="bottom-bar">
-          <div className="summary">
-            <span>🎟️ {selectedSeats.length} Seat(s) Selected</span>
-            <button
-              className="confirm-btn"
-              disabled={!selectedSeats.length}
-              onClick={() => alert("Booking Confirmed!")}
-            >
-              Book Now
-            </button>
-          </div>
-        </div>
       </div>
-      <Footer />
-    </>
+
+      <div className="booking-footer">
+        <span>🎟️ {selectedSeats.length} Seat(s) Selected</span>
+        <button
+          className="confirm-btn"
+          disabled={!selectedSeats.length}
+          onClick={() => alert("Booking Confirmed!")}
+        >
+          Book Now
+        </button>
+      </div>
+    </div>
   );
 };
 
