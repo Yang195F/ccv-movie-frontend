@@ -1,0 +1,98 @@
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-container {
+  width: 90%;
+  max-width: 500px;
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.popup-banner {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.banner-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), #000);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.popup-movie-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.popup-body {
+  padding: 20px;
+}
+
+.ticket-info {
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.timer {
+  margin-bottom: 12px;
+}
+
+.edit-button {
+  margin-right: 12px;
+  background: none;
+  color: #eee;
+  border: 1px solid #aaa;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #e53e3e;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.popup-close-btn:hover {
+  color: #e53e3e;
+}

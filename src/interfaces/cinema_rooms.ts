@@ -1,8 +1,8 @@
 import { SeatProps } from "./seats";
 
-//======= Cinema Room Definition (REUSABLE) =======
 export interface CinemaRoomProps {
-  id: string; // unique ID per room, e.g. "room1"
-  layoutType: string; // e.g. "6x6", "VIP_5x5" (used for reusable templates)
-  seatGrid?: SeatProps[][]; // optional: static grid layout if fixed
+  id: string; // e.g. "indulge1", "imax3"
+  name: string; // Optional: display name like "INDULGE 1"
+  layoutType: "INDULGE" | "IMAX" | "LUX";
+  seatGrid: SeatProps[][];
 }

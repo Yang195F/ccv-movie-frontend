@@ -10,6 +10,7 @@ export interface MovieProps {
   genre: string;
   languages: string[];
   duration: string; // e.g. "1h 50m"
+  ticketPrice?: number; // Optional, can be set later
 
   screenings?: {
     cinema: string;

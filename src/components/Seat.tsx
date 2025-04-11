@@ -1,6 +1,7 @@
+// components/Seat.tsx
 import { FC } from "react";
-import { SeatProps as SeatData } from "../interfaces/seats"; // alias to avoid name clash
-import "../users/styles/seat.css"; // Assuming you have a CSS file for styling
+import { SeatProps as SeatData } from "../interfaces/seats";
+import "../users/styles/seat.css";
 
 interface SeatComponentProps {
   seat: SeatData;
@@ -10,18 +11,14 @@ interface SeatComponentProps {
 
 const Seat: FC<SeatComponentProps> = ({ seat, isSelected, onClick }) => {
   const getClassName = () => {
-    if (seat.status === "sold") return "seat-icon sold";
-    if (isSelected) return "seat-icon selected";
-    return "seat-icon available";
+    if (seat.status === "sold") return "seat-box sold";
+    if (isSelected) return "seat-box selected";
+    return "seat-box available";
   };
 
   return (
-    <div className="seat-wrapper" onClick={onClick}>
-      <img
-        src={"../assets/icons/seat.svg"}
-        alt="Seat Icon"
-        className={getClassName()}
-      />
+    <div className={getClassName()} onClick={onClick}>
+      {seat.id}
     </div>
   );
 };

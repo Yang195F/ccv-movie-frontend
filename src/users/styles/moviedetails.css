@@ -76,6 +76,35 @@
   background: white;
   color: black;
 }
+.time-btn {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #2d3748;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.time-btn.fast {
+  background-color: orange;
+  color: black;
+}
+
+.time-btn.available {
+  background-color: #38a169;
+  color: white;
+}
+
+.time-btn.sold,
+.time-btn.past,
+.time-btn:disabled {
+  background-color: #444;
+  color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 
 /* =========================
      Date Tab Bar

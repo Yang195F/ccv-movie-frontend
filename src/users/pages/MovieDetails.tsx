@@ -140,14 +140,16 @@ const MovieDetails = () => {
                     <div className="session-group">
                       {screen.sessions.map((sess, i) => {
                         const isPast = isPastSession(sess.date, sess.time);
-                        const statusClass =
-                          sess.status === "sold out" || isPast
-                            ? "sold"
-                            : sess.status === "selling fast"
-                            ? "fast"
-                            : "available";
+                        const isSold = sess.status === "sold out";
+                        const canBook = !isPast && !isSold;
 
-                        const canBook = !isPast && sess.status !== "sold out";
+                        const statusClass = isPast
+                          ? "past"
+                          : isSold
+                          ? "sold"
+                          : sess.status === "selling fast"
+                          ? "fast"
+                          : "available";
 
                         return (
                           <div key={i} className="session-tag">
@@ -158,10 +160,12 @@ const MovieDetails = () => {
                                 canBook &&
                                 navigate(
                                   `/booking/${
-                                    movie.id
+                                    movie?.id
                                   }?cinema=${encodeURIComponent(
                                     screen.cinema
-                                  )}&date=${sess.date}&time=${sess.time}`
+                                  )}&date=${sess.date}&time=${sess.time}&room=${
+                                    sess.roomId
+                                  }`
                                 )
                               }
                             >

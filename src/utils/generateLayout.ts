@@ -1,23 +1,21 @@
 import { SeatProps } from "../interfaces/seats";
 
 export const generateSeatGrid = (rows: number, cols: number): SeatProps[][] => {
-  const grid: SeatProps[][] = [];
+  const seatGrid: SeatProps[][] = [];
+  const rowLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   for (let r = 0; r < rows; r++) {
-    const rowLetter = String.fromCharCode(65 + r); // 'A', 'B', 'C', ...
     const row: SeatProps[] = [];
-
     for (let c = 1; c <= cols; c++) {
       row.push({
-        id: `${rowLetter}${c}`,
-        row: rowLetter,
+        id: `${rowLabels[r]}${c}`,
+        row: rowLabels[r],
         number: c,
         status: "available",
       });
     }
-
-    grid.push(row);
+    seatGrid.push(row);
   }
 
-  return grid;
+  return seatGrid;
 };

@@ -1,16 +1,9 @@
-:root {
-  --color-bg: #1d1616;
-  --color-primary: #8e1616;
-  --color-accent: #d84040;
-  --color-text: #eeeeee;
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
-
-  color: var(--color-text);
-  font-family: "Segoe UI", sans-serif;
+  background-color: #000; /* black */
+  color: white; /* optional: makes text visible */
+  width: 100%;
+  min-height: 100vh;
 }

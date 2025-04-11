@@ -9,6 +9,8 @@ import MoviesPage from "./users/pages/MoviesPage";
 import SeatBooking from "./users/pages/SeatBookingPage";
 import "./users/styles/global.css";
 import MovieDetails from "./users/pages/MovieDetails";
+import CheckoutPage from "./users/pages/CheckoutPage";
+import TicketConfirmationPage from "./users/pages/ViewTicketPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -30,7 +32,7 @@ root.render(
         <Route path="/movie/:id" element={<MovieDetails />} />
         {/* Define Movie Details Page */}
         <Route path="/showtimes/:cinemaId" element={<MoviesPage />} />
-        {/* Define SeatBooking  Page */}
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<LandingPage />} />{" "}
       </Routes>
     </BrowserRouter>

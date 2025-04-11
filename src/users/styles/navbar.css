@@ -1,22 +1,24 @@
 /* navbar.css */
 
 /* Base header styling */
+/* This fills the screen with your background color */
+.navbar-background {
+  background-color: #1d1616;
+  width: 100%;
+}
+
+/* This centers your nav content */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: transparent;
-  position: relative;
-  z-index: 10;
-  max-width: 1400px;
-  margin: 0 auto;
-  font-family: "Segoe UI", sans-serif;
-  background-color: #1d1616;
   padding: 2rem;
-  height: 140px;
+  font-family: "Segoe UI", sans-serif;
+  height: 100px;
+  max-width: 1400px; /* ✅ limit content width */
+  margin: 0 auto; /* ✅ center content */
+  background: transparent; /* leave transparent here */
 }
-
 /* Left side (logo + location) */
 .header-left {
   display: flex;

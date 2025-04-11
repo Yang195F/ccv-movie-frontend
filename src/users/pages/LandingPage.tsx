@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "../styles/landing_page.css";
+import MovieCard from "../../components/MovieCards";
 
 import { MovieProps } from "../../interfaces/movies";
 import { CinemaProps } from "../../interfaces/cinemas";
@@ -103,29 +104,11 @@ const CinemaWebsite: React.FC = () => {
 
         <div className="movie-grid-wrapper">
           <div className="movie-grid">
-            {movies.filter((movie) => movie.category === activeTab).length ===
-            0 ? (
-              <div>No Movies Available</div>
-            ) : (
-              movies
-                .filter((movie) => movie.category === activeTab)
-                .map((movie) => (
-                  <Link
-                    to={`/movie/${movie.id}`}
-                    key={movie.id}
-                    className="movie-card"
-                  >
-                    <div className="movie-poster">
-                      <img
-                        src={movie.image}
-                        alt={movie.title}
-                        className="poster-image"
-                      />
-                    </div>
-                    <div className="movie-title">{movie.title}</div>
-                  </Link>
-                ))
-            )}
+            {movies
+              .filter((movie) => movie.category === activeTab)
+              .map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
           </div>
         </div>
       </div>

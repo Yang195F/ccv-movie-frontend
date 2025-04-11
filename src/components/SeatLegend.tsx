@@ -1,4 +1,3 @@
-// components/SeatLegend.tsx
 import React from "react";
 import "../users/styles/seat_legend.css";
 
