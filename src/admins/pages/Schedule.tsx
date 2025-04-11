@@ -18,7 +18,7 @@ const Schedule = () => {
     <div className="schedule-page">
       <NavbarAdmin />
       <div className="schedule-container">
-        <h2>Schedule Movie</h2>
+        <h1>Schedule Movie</h1>
         
         <div className="schedule-form">
           {/* Movie Selection */}

@@ -21,6 +21,7 @@
 .poster-upload {
   width: 300px;
   margin-left: -40px;
+  margin-top: 25px;
 }
 
 .input-group {
@@ -118,8 +119,9 @@
   color: white;
 }
 
-/* Location selection */
+/* Location selection - UPDATED */
 .cinema-locations {
+  grid-column: 2;
   display: grid;
   grid-template-columns: 150px 1fr;
   gap: 15px;
@@ -152,36 +154,58 @@
   color: white;
 }
 
-/* Ticket prices */
+/* Ticket prices - UPDATED */
 .ticket-prices {
+  grid-column: 2;
+  margin-top: -20px;
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 150px auto;
   gap: 15px;
-  align-items: flex-start;
 }
 
-.price-inputs-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.ticket-prices > label:first-child {
+  text-align: right;
+  font-weight: normal;
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
 }
 
-.price-input {
+.ticket-prices > div {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 30px;
 }
 
-.price-input label {
+.ticket-prices > div:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.ticket-prices > div:nth-child(3) {
+  grid-row: 2;
+  grid-column: 2;
+  margin-top: 5px;
+}
+
+.ticket-prices > div:nth-child(4) {
+  grid-row: 3;
+  grid-column: 2;
+  margin-top: 5px;
+}
+
+.ticket-prices > div > label {
   width: 50px;
-  text-align: left;
+  display: inline-block;
 }
 
-.price-input input {
+.ticket-prices input {
   background-color: white;
   border: none;
-  padding: 8px 10px;
+  padding: 6px 8px;
   width: 100px;
+  height: 24px;
 }
 
 /* Add Movie button */

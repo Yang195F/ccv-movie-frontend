@@ -8,6 +8,7 @@ export interface MovieProps {
   rating: string
   category: string
   releaseDate: string
+  endDate: string
   genre: string
   languages: string[]
   duration: string
@@ -65,6 +66,7 @@ export const mockMovies: MovieProps[] = [
     rating: "P12",
     category: "BOOK EARLY",
     releaseDate: "2025-04-08",
+    endDate: "2025-04-15",
     genre: "Action, Comedy",
     languages: ["English"],
     duration: "1h 50m",
@@ -126,6 +128,7 @@ export const mockMovies: MovieProps[] = [
     rating: "P13",
     category: "NOW SHOWING",
     releaseDate: "2025-04-08",
+    endDate: "2025-04-15",
     genre: "Sci-Fi, Thriller",
     languages: ["English", "Japanese"],
     duration: "2h 28m",
@@ -164,6 +167,7 @@ export const mockMovies: MovieProps[] = [
     rating: "18",
     category: "COMING SOON",
     releaseDate: "2025-05-01",
+    endDate: "2025-05-15",
     genre: "Drama, Thriller",
     languages: ["English"],
     duration: "2h 2m",

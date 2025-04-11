@@ -8,25 +8,31 @@ interface MovieSelectorProps {
 }
 
 const MovieSelector: React.FC<MovieSelectorProps> = ({ movies, selectedMovie, setSelectedMovie }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const movie = movies.find(m => m.id === Number(e.target.value));
+    if (movie) {
+      setSelectedMovie(movie);
+
+      // You can access data here
+      console.log('Duration:', movie.duration);
+      console.log('Release Date:', movie.releaseDate);
+      console.log('End Date:', movie.endDate);
+
+      
+    }
+  };
+
   return (
     <div className="movie-selector">
-      <div className="movie-list">
-        <label>Select Movie:</label>
-        <select 
-          value={selectedMovie?.id || ''} 
-          onChange={(e) => {
-            const movie = movies.find(m => m.id === Number(e.target.value));
-            if (movie) setSelectedMovie(movie);
-          }}
-        >
-          <option value="">Select a movie</option>
-          {movies.map((movie) => (
-            <option key={movie.id} value={movie.id}>
-              {movie.title}
-            </option>
-          ))}
-        </select>
-      </div>
+      <label>Select Movie:</label>
+      <select value={selectedMovie?.id || ''} onChange={handleChange}>
+        <option value="">Select a movie</option>
+        {movies.map((movie) => (
+          <option key={movie.id} value={movie.id}>
+            {movie.title}
+          </option>
+        ))}
+      </select>
 
       {selectedMovie && (
         <div className="movie-preview">
@@ -35,11 +41,6 @@ const MovieSelector: React.FC<MovieSelectorProps> = ({ movies, selectedMovie, se
             alt={selectedMovie.title}
             className="movie-image"
           />
-          <div className="movie-info">
-            <p><strong>Duration:</strong> {selectedMovie.duration}</p>
-            <p><strong>Release Date:</strong> {selectedMovie.releaseDate}</p>
-            <p><strong>Genre:</strong> {selectedMovie.genre}</p>
-          </div>
         </div>
       )}
     </div>
