@@ -14,9 +14,9 @@
   align-items: center;
   padding: 2rem;
   font-family: "Segoe UI", sans-serif;
-  height: 100px;
+  height: 140px;
   max-width: 1400px; /* ✅ limit content width */
-  margin: 0 auto; /* ✅ center content */
+  margin: auto; /* ✅ center content */
   background: transparent; /* leave transparent here */
 }
 /* Left side (logo + location) */

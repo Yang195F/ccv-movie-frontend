@@ -23,19 +23,19 @@ export const mockMovies: MovieProps[] = [
         cinema: "Pavilion KL",
         sessions: [
           {
-            date: "2025-04-11",
+            date: "2025-04-15",
             time: "13:00",
             status: "available",
             roomId: "indulge2_pvl",
           },
           {
-            date: "2025-04-12",
+            date: "2025-04-17",
             time: "15:30",
             status: "selling fast",
             roomId: "imax1_pvl",
           },
           {
-            date: "2025-04-11",
+            date: "2025-04-30",
             time: "20:15",
             status: "available",
             roomId: "lux2_pvl",
@@ -46,22 +46,22 @@ export const mockMovies: MovieProps[] = [
         cinema: "Boulevard Bintulu",
         sessions: [
           {
-            date: "2025-04-11",
+            date: "2025-04-20",
             time: "12:45",
             status: "available",
-            roomId: "room3",
+            roomId: "lux1_btl",
           },
           {
-            date: "2025-04-12",
+            date: "2025-04-18",
             time: "17:00",
             status: "available",
-            roomId: "room3",
+            roomId: "lux1_btl",
           },
           {
-            date: "2025-04-14",
+            date: "2025-04-19",
             time: "21:30",
             status: "sold out",
-            roomId: "room3",
+            roomId: "lux1_btl",
           },
         ],
       },
@@ -85,7 +85,7 @@ export const mockMovies: MovieProps[] = [
         cinema: "Pavilion KL",
         sessions: [
           {
-            date: "2025-04-11",
+            date: "2025-04-30",
             time: "11:00",
             status: "available",
             roomId: "indulge1_pvl",
@@ -142,7 +142,7 @@ export const mockCinemas: CinemaProps[] = [
     ],
   },
   {
-    id: "boulevard_pvl",
+    id: "boulevard_btl",
     name: "Boulevard Bintulu",
     cinemaRooms: [
       {

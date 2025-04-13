@@ -5,12 +5,14 @@ import Footer from "../../components/Footer";
 import "../styles/landing_page.css";
 import MovieCard from "../../components/MovieCards";
 import "../styles/movie_page.css";
+import "../styles/global.css";
+import FilterButton from "../../components/Filter";
 
 import { MovieProps } from "../../interfaces/movies";
 import { CinemaProps } from "../../interfaces/cinemas";
 import { mockCinemas, mockMovies } from "../../data/mockData";
 
-const CinemaWebsite: React.FC = () => {
+const MoviesPage: React.FC = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>("NOW SHOWING");
   const [currentSlide, setCurrentSlide] = useState<number>(0);
@@ -19,6 +21,10 @@ const CinemaWebsite: React.FC = () => {
   const bannerMovies = movies.filter((movie) => movie.banner);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<string>("");
+  const allGenres = Array.from(
+    new Set(mockMovies.flatMap((m) => m.genre?.split(", ") || []))
+  );
 
   const tabs: string[] = ["NOW SHOWING", "BOOK EARLY", "COMING SOON", "ALL"];
 
@@ -38,7 +44,6 @@ const CinemaWebsite: React.FC = () => {
 
   return (
     <div className="cinema-container">
-      <Navbar />
       {/* Movie Tabs */}
       <div className="movie-tabs-section">
         <div className="tabs-wrapper">
@@ -56,29 +61,56 @@ const CinemaWebsite: React.FC = () => {
               </button>
             ))}
 
-            {/* 👉 New Filter Button */}
-            <button className="filter-button">
-              <span className="filter-icon">⚙️</span> FILTER
-            </button>
+            {/* Filter Button + Dropdown */}
+
+            <FilterButton
+              genres={allGenres}
+              selectedGenre={selectedGenre}
+              onGenreSelect={setSelectedGenre}
+            />
           </div>
         </div>
 
         <div className="movie-grid-wrapper">
           <div className="movie-grid">
-            {movies
-              .filter((movie) =>
-                activeTab === "ALL" ? true : movie.category === activeTab
-              )
-              .map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
+            {movies.filter((movie) => {
+              const matchesTab =
+                activeTab === "ALL" ? true : movie.category === activeTab;
+              const matchesGenre =
+                !selectedGenre ||
+                movie.genre
+                  ?.toLowerCase()
+                  .includes(selectedGenre.toLowerCase());
+              return matchesTab && matchesGenre;
+            }).length === 0 ? (
+              <p
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  marginTop: "2rem",
+                }}
+              >
+                No movies found for this genre.
+              </p>
+            ) : (
+              movies
+                .filter((movie) => {
+                  const matchesTab =
+                    activeTab === "ALL" ? true : movie.category === activeTab;
+                  const matchesGenre =
+                    !selectedGenre ||
+                    movie.genre
+                      ?.toLowerCase()
+                      .includes(selectedGenre.toLowerCase());
+                  return matchesTab && matchesGenre;
+                })
+                .map((movie) => <MovieCard key={movie.id} movie={movie} />)
+            )}
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };
 
-export default CinemaWebsite;
+export default MoviesPage;

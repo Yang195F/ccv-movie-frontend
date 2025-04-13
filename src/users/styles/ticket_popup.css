@@ -1,4 +1,4 @@
-.popup-backdrop {
+.ticket-popup-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 9999;
 }
 
-.popup-container {
+.ticket-popup-container {
   width: 90%;
   max-width: 500px;
   background-color: #111;
@@ -21,14 +21,14 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-.popup-banner {
+.ticket-popup-banner {
   height: 180px;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.banner-overlay {
+.ticket-banner-overlay {
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), #000);
@@ -38,14 +38,14 @@
   justify-content: flex-end;
 }
 
-.popup-movie-title {
+.ticket-popup-movie-title {
   font-size: 22px;
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
 }
 
-.popup-body {
+.ticket-popup-body {
   padding: 20px;
 }
 
@@ -93,6 +93,6 @@
   z-index: 10;
 }
 
-.popup-close-btn:hover {
+.ticket-popup-close-btn:hover {
   color: #e53e3e;
 }

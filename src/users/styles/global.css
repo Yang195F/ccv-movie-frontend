@@ -2,8 +2,18 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* black */
-  color: white; /* optional: makes text visible */
-  width: 100%;
   min-height: 100vh;
+  background-color: #000;
+  color: white;
+}
+
+/* New layout fix */
+.app-body-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 240px); /* subtract estimated header+footer height */
+}
+
+.main-content {
+  flex: 1;
 }

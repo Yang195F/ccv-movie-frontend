@@ -29,17 +29,17 @@ const TicketConfirmationPopup: React.FC<TicketPopUpProps> = ({
   const totalPrice = pricePerTicket * seats.length;
 
   return (
-    <div className="popup-backdrop">
-      <div className="popup-container">
+    <div className="ticket-popup-backdrop">
+      <div className="ticket-popup-container">
         <div
-          className="popup-banner"
+          className="ticket-popup-banner"
           style={{ backgroundImage: `url(${banner})` }}
         >
-          <div className="banner-overlay">
+          <div className="ticket-banner-overlay">
             <button className="popup-close-btn" onClick={onCancel}>
               ×
             </button>
-            <h2 className="popup-movie-title">{movieTitle}</h2>
+            <h2 className="ticket-popup-movie-title">{movieTitle}</h2>
             <p>
               {cinemaName} {roomName}
             </p>
@@ -49,7 +49,7 @@ const TicketConfirmationPopup: React.FC<TicketPopUpProps> = ({
           </div>
         </div>
 
-        <div className="popup-body">
+        <div className="ticket-popup-body">
           <div className="ticket-info">
             <p className="ticket-type"></p>
             <p>RM insert price here</p>

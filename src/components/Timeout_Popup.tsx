@@ -13,11 +13,11 @@ const TimeoutPopup: React.FC<TimeoutPopupProps> = ({
   message,
 }) => {
   return (
-    <div className="popup-backdrop">
-      <div className="popup-container">
+    <div className="timeout-popup-backdrop">
+      <div className="timeout-popup-container">
         <h2>⏳ Time’s Up!</h2>
         <p>Your booking session has expired. Please book again.</p>
-        <div className="popup-controls">
+        <div className="timeout-popup-controls">
           <button className="confirm-button" onClick={onClose}>
             Back to Home
           </button>

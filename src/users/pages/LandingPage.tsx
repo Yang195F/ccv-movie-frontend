@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "../styles/landing_page.css";
 import MovieCard from "../../components/MovieCards";
+import "../styles/global.css";
 
 import { MovieProps } from "../../interfaces/movies";
 import { CinemaProps } from "../../interfaces/cinemas";
@@ -49,8 +50,6 @@ const CinemaWebsite: React.FC = () => {
 
   return (
     <div className="cinema-container">
-      <Navbar />
-
       {/* Hero Slideshow */}
       <section className="hero-slideshow">
         {bannerMovies.length === 0 ? (
@@ -112,8 +111,6 @@ const CinemaWebsite: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

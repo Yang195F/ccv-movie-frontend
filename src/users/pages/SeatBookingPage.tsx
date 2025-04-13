@@ -101,7 +101,9 @@ const SeatBookingPage: React.FC = () => {
         <div className="banner-overlay">
           <div className="booking-header">
             <div className="header-inner">
-              <button className="back-button">←</button>
+              <button className="back-button" onClick={() => navigate(-1)}>
+                ←
+              </button>
 
               <div className="header-center">
                 <div className="progress-indicator">
