@@ -1,31 +1,53 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import "../styles/landing_page.css";
 import MovieCard from "../../components/MovieCards";
+import "../styles/landing_page.css";
 import "../styles/movie_page.css";
 
 import { MovieProps } from "../../interfaces/movies";
 import { CinemaProps } from "../../interfaces/cinemas";
-import { mockCinemas, mockMovies } from "../../data/mockData";
+import { getAllMovies } from "../../services/movieService";
+import { getCinemas } from "../../services/cinemaService";
 
 const CinemaWebsite: React.FC = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>("NOW SHOWING");
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [movies, setMovies] = useState<MovieProps[]>([]);
   const [cinemas, setCinemas] = useState<CinemaProps[]>([]);
-  const bannerMovies = movies.filter((movie) => movie.banner);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const tabs: string[] = ["NOW SHOWING", "BOOK EARLY", "COMING SOON", "ALL"];
 
   useEffect(() => {
-    setMovies(mockMovies);
-    setCinemas(mockCinemas);
-    setLoading(false);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const movieResult = await getAllMovies();
+        const cinemaResult = await getCinemas();
+
+        if (movieResult.success) {
+          setMovies(movieResult.data);
+        } else {
+          setError("Failed to load movies");
+        }
+
+        if (cinemaResult.success) {
+          setCinemas(cinemaResult.data);
+        } else {
+          setError("Failed to load cinemas");
+        }
+      } catch (err: any) {
+        setError(err.message || "Something went wrong.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const navigateToCinema = (cinemaId: string, movieId?: number) => {
@@ -36,9 +58,14 @@ const CinemaWebsite: React.FC = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  const filteredMovies = movies.filter((movie) =>
+    activeTab === "ALL" ? true : movie.category === activeTab
+  );
+
   return (
     <div className="cinema-container">
       <Navbar />
+
       {/* Movie Tabs */}
       <div className="movie-tabs-section">
         <div className="tabs-wrapper">
@@ -56,22 +83,19 @@ const CinemaWebsite: React.FC = () => {
               </button>
             ))}
 
-            {/* 👉 New Filter Button */}
+            {/* Filter Button */}
             <button className="filter-button">
               <span className="filter-icon">⚙️</span> FILTER
             </button>
           </div>
         </div>
 
+        {/* Movie Grid */}
         <div className="movie-grid-wrapper">
           <div className="movie-grid">
-            {movies
-              .filter((movie) =>
-                activeTab === "ALL" ? true : movie.category === activeTab
-              )
-              .map((movie) => (
-                <MovieCard key={movie.movieId} movie={movie} />
-              ))}
+            {filteredMovies.map((movie) => (
+              <MovieCard key={movie.movieId} movie={movie} />
+            ))}
           </div>
         </div>
       </div>

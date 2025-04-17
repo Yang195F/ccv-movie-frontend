@@ -18,16 +18,19 @@ const apiRoutes = {
   movies: {
     getMovie: `${API_BASE_URL}/movies`,
     addMovie: `${API_BASE_URL}/movies/add`,
-    getDetails: (movieId: string) => `${API_BASE_URL}/movies/${movieId}`, // Movie details placeholder
+    getDetails: (movieId: string) => `${API_BASE_URL}/movies/${movieId}`,
   },
   cinemas: {
-    getAll: `${API_BASE_URL}/cinemas`, // List of cinemas
-    getDetails: (cinemaId: string) => `${API_BASE_URL}/cinemas/${cinemaId}`, // Cinema details placeholder
-    getShowtimes: (cinemaId: string) => `${API_BASE_URL}/cinemas/${cinemaId}/showtimes`, // Showtimes for a specific cinema
-    getRooms: (roomId: string) => `${API_BASE_URL}/cinemas/room/${roomId}` // Rooms for a specific cinema
+    getAll: `${API_BASE_URL}/cinemas`,
+    getDetails: (cinemaId: string) => `${API_BASE_URL}/cinemas/${cinemaId}`,
+    getShowtimes: (cinemaId: string) => `${API_BASE_URL}/cinemas/${cinemaId}/showtimes`,
+    getRoom: (roomId: string) => `${API_BASE_URL}/cinemas/room/${roomId}`
   },
   screenings: {
     getDetails: (id: string) => `${API_BASE_URL}/screenings/${id}`,
+  },
+  tickets: {
+    book: `${API_BASE_URL}/tickets/book`,
   }
 
 }

@@ -3,20 +3,59 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin-top: 1.5rem;
+  margin: 2rem 0;
   flex-wrap: wrap;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #ccc;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  color: #eee;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.legend-item:hover {
+  transform: translateY(-3px);
 }
 
 .legend-item .seat {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.legend-item .seat.available {
+  background-color: #805ad5;
+}
+
+.legend-item .seat.selected {
+  background-color: #38a169;
+}
+
+.legend-item .seat.sold {
+  background-color: #e53e3e;
+}
+
+@media (max-width: 576px) {
+  .seat-legend {
+    gap: 1rem;
+  }
+
+  .legend-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .legend-item .seat {
+    width: 20px;
+    height: 20px;
+  }
 }

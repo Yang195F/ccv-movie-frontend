@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Ticket } from "../../interfaces/ticket";
 import "../styles/checkout_page.css";
 import TimeoutPopup from "../../components/Timeout_Popup";
 import SuccessPopup from "../../components/Success_Popup";
+import { DisplayTicket } from "../../interfaces/displayTicket";
 
 const CheckoutPage: React.FC = () => {
   const { state } = useLocation();
@@ -11,11 +11,12 @@ const CheckoutPage: React.FC = () => {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [timer, setTimer] = useState(300);
-  const [ticket, setTicket] = useState<Ticket | null>(null);
+  const [ticket, setTicket] = useState<DisplayTicket | null>(null);
   const [showTimeout, setShowTimeout] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const {
+    screeningId,
     movie,
     banner,
     cinemaName,
@@ -26,30 +27,22 @@ const CheckoutPage: React.FC = () => {
     pricePerTicket,
   } = state || {};
 
-  const { title: movieTitle, duration, genre, languages, rating } = movie || {};
-
-  const language = languages.join(", ");
+  const { title: movieTitle, duration, genre, rating } = movie || {};
   const totalPrice = seats.length * pricePerTicket;
 
   useEffect(() => {
     if (!timer || ticket) return;
     const interval = setInterval(() => {
       setTimer((prev) => {
-        if (prev === 1) setShowTimeout(true); // show popup when it hits 0
+        if (prev === 1) setShowTimeout(true);
         return prev > 0 ? prev - 1 : 0;
       });
     }, 1000);
     return () => clearInterval(interval);
   }, [timer, ticket]);
 
-  useEffect(() => {
-    console.log("🎟️ Ticket received at Checkout Page:", ticket);
-  }, [ticket]);
-
   const formatTime = (sec: number) => {
-    const m = Math.floor(sec / 60)
-      .toString()
-      .padStart(2, "0");
+    const m = Math.floor(sec / 60).toString().padStart(2, "0");
     const s = (sec % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   };
@@ -57,26 +50,18 @@ const CheckoutPage: React.FC = () => {
   const handleConfirm = () => {
     setIsProcessing(true);
 
-    const newTicket: Ticket = {
+    const displayTicket: DisplayTicket = {
       ticketId: Math.random().toString(36).substring(2),
-      name: "John Doe",
-      email: "john@example.com",
       movieTitle,
       cinemaName,
       roomName,
       date,
       time,
       seats,
-      language,
-      genre,
-      rating,
-      duration,
       totalPrice,
-      pricePerTicket,
-      bookedAt: new Date().toISOString(),
     };
 
-    setTicket(newTicket);
+    setTicket(displayTicket);
     setShowSuccessPopup(true);
     setIsProcessing(false);
   };
@@ -97,26 +82,16 @@ const CheckoutPage: React.FC = () => {
 
         <div className="banner-overlay">
           <h1 className="checkout-movie-title">{movieTitle}</h1>
-          <p>
-            {cinemaName} | {roomName}
-          </p>
-          <p>
-            {date} at {time}
-          </p>
+          <p>{cinemaName} | {roomName}</p>
+          <p>{date} at {time}</p>
         </div>
       </div>
 
       <div className="checkout-body">
         <h2>Booking Summary</h2>
-        <p>
-          <strong>Seats:</strong> {seats.join(", ")}
-        </p>
-        <p>
-          <strong>Tickets:</strong> {seats.length}
-        </p>
-        <p>
-          <strong>Total:</strong> RM {totalPrice.toFixed(2)}
-        </p>
+        <p><strong>Seats:</strong> {seats.join(", ")}</p>
+        <p><strong>Tickets:</strong> {seats.length}</p>
+        <p><strong>Total:</strong> RM {totalPrice.toFixed(2)}</p>
         <p className="countdown">⏳ Time Left: {formatTime(timer)}</p>
 
         <button
@@ -130,7 +105,6 @@ const CheckoutPage: React.FC = () => {
         </button>
       </div>
 
-      {/* ✅ Popups */}
       {showTimeout && (
         <TimeoutPopup
           message="⏰ Timeout! Please book again."
@@ -147,10 +121,10 @@ const CheckoutPage: React.FC = () => {
           date={ticket.date}
           time={ticket.time}
           seats={ticket.seats}
-          totalPrice={ticket.totalPrice || 0}
+          totalPrice={ticket.totalPrice}
           onDone={() => {
             setShowSuccessPopup(false);
-            navigate("/"); // 👈 this navigates back to your landing page
+            navigate("/");
           }}
         />
       )}

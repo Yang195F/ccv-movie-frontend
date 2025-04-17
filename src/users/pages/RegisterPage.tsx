@@ -1,14 +1,13 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
-import "../styles/pages_styles.css"
-import "../styles/login_page.css"
-import { useNavigate } from "react-router-dom"
-import InputField from "../../components/InputField"
-import { register } from "../../services/authService"
+import { useState, useEffect } from "react"
+import { useNavigate, Link } from "react-router-dom"
+import "../styles/auth_pages.css"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
+import InputField from "../../components/InputField"
+import { register } from "../../services/authService"
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState("")
@@ -18,7 +17,15 @@ const RegisterPage: React.FC = () => {
   const [error, setError] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [animateForm, setAnimateForm] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    setTimeout(() => {
+      setAnimateForm(true)
+    }, 100)
+  }, [])
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -62,49 +69,108 @@ const RegisterPage: React.FC = () => {
   }
 
   return (
-    <div className="login-page-container">
+    <div className="auth-page-container">
       <Navbar />
 
-      <div className="login-content">
-        <div className="login-form-container">
-          <div className="login-form-wrapper">
-            <h1 className="login-title">Create Account</h1>
-            <p className="login-subtitle">Join us to start booking your favorite movies</p>
+      <div className="auth-content">
+        <div className={`auth-form-container ${animateForm ? "animate" : ""}`}>
+          <div className="auth-form-wrapper">
+            <div className="form-header">
+              <h1 className="auth-title">Create Account</h1>
+              <p className="auth-subtitle">Join us to start booking your favorite movies</p>
+            </div>
 
-            {error && <div className="error-message">{error}</div>}
-            {successMessage && <div className="success-message">{successMessage}</div>}
+            {error && (
+              <div className="error-message">
+                <span className="error-icon">⚠️</span>
+                {error}
+              </div>
+            )}
 
-            <form onSubmit={handleRegister} className="login-form">
-              <InputField label="Username" type="text" value={username} onChange={setUsername} />
-              <InputField label="Email" type="email" value={email} onChange={setEmail} />
-              <InputField label="Password" type="password" value={password} onChange={setPassword} />
-              <InputField
-                label="Confirm Password"
-                type="password"
-                value={confirmPassword}
-                onChange={setConfirmPassword}
-              />
+            {successMessage && (
+              <div className="success-message">
+                <span className="success-icon">✅</span>
+                {successMessage}
+              </div>
+            )}
 
-              <button type="submit" className="login-button" disabled={isLoading}>
-                {isLoading ? "Registering..." : "Register"}
+            <form onSubmit={handleRegister} className="auth-form">
+              <div className="form-group">
+                <InputField label="Username" type="text" value={username} onChange={setUsername} />
+              </div>
+
+              <div className="form-group">
+                <InputField label="Email" type="email" value={email} onChange={setEmail} />
+              </div>
+
+              <div className="form-group">
+                <InputField label="Password" type="password" value={password} onChange={setPassword} />
+              </div>
+
+              <div className="form-group">
+                <InputField
+                  label="Confirm Password"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={setConfirmPassword}
+                />
+              </div>
+
+              <div className="terms-checkbox">
+                <input type="checkbox" id="terms" className="custom-checkbox" />
+                <label htmlFor="terms">
+                  I agree to the{" "}
+                  <Link to="/terms" className="terms-link">
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/privacy" className="terms-link">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
+
+              <button type="submit" className="auth-button" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <span className="spinner"></span>
+                    <span>Registering...</span>
+                  </>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </form>
 
-            <div className="register-prompt">
+            <div className="auth-alt-prompt">
               Already have an account?{" "}
-              <a href="/login" className="register-link">
+              <Link to="/login" className="auth-alt-link">
                 Sign in
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="login-image-container">
-          <div className="login-image" style={{ backgroundImage: "url('https://imgur.com/caVTbAu.jpg')" }}>
+        <div className={`auth-image-container ${animateForm ? "animate" : ""}`}>
+          <div className="auth-image" style={{ backgroundImage: "url('https://imgur.com/caVTbAu.jpg')" }}>
             <div className="image-overlay">
               <div className="promo-content">
                 <h2>Join Our Movie Community</h2>
                 <p>Get exclusive access to premieres and special events</p>
+                <div className="promo-features">
+                  <div className="promo-feature">
+                    <span className="feature-icon">🎬</span>
+                    <span>Early access to blockbuster releases</span>
+                  </div>
+                  <div className="promo-feature">
+                    <span className="feature-icon">💰</span>
+                    <span>Member-only discounts and offers</span>
+                  </div>
+                  <div className="promo-feature">
+                    <span className="feature-icon">🏆</span>
+                    <span>Earn rewards with every booking</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

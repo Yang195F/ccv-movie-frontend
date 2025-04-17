@@ -1,3 +1,4 @@
+import { apiClient } from "../config/apiClient";
 import apiRoutes from "../config/apiRoutes"
 
 export const register = async (username: string, password: string, email: string) => {
@@ -62,15 +63,15 @@ export const verifyEmail = async (userId: string, code: string) => {
     }
 }
 
-export const refreshToken = async (refreshToken: string) => {
+export const refreshToken = async () => {
     try {
-        const response = await fetch(apiRoutes.auths.refresh, {
+        const response = await apiClient(apiRoutes.auths.refresh, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                RefreshToken: refreshToken,
+                RefreshToken: sessionStorage.getItem("refreshToken"),
             }),
         })
 
