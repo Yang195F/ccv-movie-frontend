@@ -1,117 +1,61 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import "../styles/landing_page.css";
-import MovieCard from "../../components/MovieCards";
+import HeroSlideshow from "../../components/HeroSlideshow";
+import MovieTabs from "../../components/MovieTabs";
+import MovieGrid from "../../components/MovieGrid";
 
 import { MovieProps } from "../../interfaces/movies";
-import { CinemaProps } from "../../interfaces/cinemas";
-import { mockCinemas, mockMovies } from "../../data/mockData";
+import { getAllMovies } from "../../services/movieService";
+
+const TABS: string[] = ["NOW SHOWING", "BOOK EARLY", "COMING SOON", "ALL"];
 
 const CinemaWebsite: React.FC = () => {
-  const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<string>("NOW SHOWING");
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [activeTab, setActiveTab] = useState("NOW SHOWING");
   const [movies, setMovies] = useState<MovieProps[]>([]);
-  const [cinemas, setCinemas] = useState<CinemaProps[]>([]);
-  const bannerMovies = movies.filter((movie) => movie.banner);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const tabs: string[] = ["NOW SHOWING", "BOOK EARLY", "COMING SOON", "ALL"];
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setMovies(mockMovies);
-    setCinemas(mockCinemas);
-    setLoading(false);
+    const fetchMovies = async () => {
+      try {
+        const result = await getAllMovies();
+        if (result.success) {
+          setMovies(result.data);
+        } else {
+          setError(result.message || "Failed to load movie data.");
+        }
+      } catch (err) {
+        setError("Failed to load movie data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
   }, []);
 
-  useEffect(() => {
-    if (bannerMovies.length === 0) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) =>
-        prev === bannerMovies.length - 1 ? 0 : prev + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [bannerMovies]);
-
-  const navigateToCinema = (cinemaId: string, movieId?: number) => {
-    const path = `/showtimes/${cinemaId}${movieId ? `?movie=${movieId}` : ""}`;
-    navigate(path);
+  const handleTabChange = (tab: string) => {
+    if (tab === "ALL") navigate("/movies");
+    else setActiveTab(tab);
   };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="cinema-container">
+    <div className="cinema-page">
       <Navbar />
 
-      {/* Hero Slideshow */}
-      <section className="hero-slideshow">
-        {bannerMovies.length === 0 ? (
-          <div>No Hero Slides Available</div>
-        ) : (
-          bannerMovies.map((movie, index) => (
-            <div
-              key={movie.id}
-              className={`hero-slide ${index === currentSlide ? "active" : ""}`}
-              style={{
-                backgroundImage: `url(${movie.banner || "/placeholder.jpg"})`,
-              }}
-            >
-              <div className="overlay">
-                <h1 className="movie-title">{movie.title}</h1>
-                <p className="movie-info">
-                  {movie.genre} | {movie.duration} |{" "}
-                  {movie.languages?.join(", ")}
-                </p>
-                <button
-                  className="hero-button"
-                  onClick={() => navigate(`/movie/${movie.id}`)}
-                >
-                  Book Now
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-        <div className="hero-fade-bottom" />
+      <HeroSlideshow movies={movies.filter((m) => m.banner)} />
+
+      <section className="movie-tabs-section">
+        <MovieTabs tabs={TABS} activeTab={activeTab} onTabChange={handleTabChange} />
+        <MovieGrid movies={movies.filter((m) => m.category === activeTab)} />
       </section>
-
-      {/* Movie Tabs */}
-      <div className="movie-tabs-section">
-        <div className="tabs-wrapper">
-          <div className="movie-tabs">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                className={`tab-button ${activeTab === tab ? "active" : ""}`}
-                onClick={() => {
-                  if (tab === "ALL") navigate("/movies");
-                  else setActiveTab(tab);
-                }}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="movie-grid-wrapper">
-          <div className="movie-grid">
-            {movies
-              .filter((movie) => movie.category === activeTab)
-              .map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
-          </div>
-        </div>
-      </div>
 
       <Footer />
     </div>

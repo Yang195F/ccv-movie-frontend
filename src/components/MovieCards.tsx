@@ -9,7 +9,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
-    <Link to={`/movie/${movie.id}`} className="movie-card">
+    <Link to={`/movie/${movie.movieId}`} className="movie-card">
       <div className="movie-poster">
         <img src={movie.image} alt={movie.title} className="poster-image" />
       </div>

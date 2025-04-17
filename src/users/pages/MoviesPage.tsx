@@ -70,7 +70,7 @@ const CinemaWebsite: React.FC = () => {
                 activeTab === "ALL" ? true : movie.category === activeTab
               )
               .map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
+                <MovieCard key={movie.movieId} movie={movie} />
               ))}
           </div>
         </div>

@@ -10,6 +10,10 @@ import SeatBooking from "./users/pages/SeatBookingPage";
 import "./users/styles/global.css";
 import MovieDetails from "./users/pages/MovieDetails";
 import CheckoutPage from "./users/pages/CheckoutPage";
+import EmailVerificationPage from "./users/pages/EmailVerificationPage";
+import ForgotPasswordPage from "./users/pages/ForgotPasswordPage"
+import VerifyResetCodePage from "./users/pages/VerifyResetCodePage"
+import ResetPasswordPage from "./users/pages/ResetPasswordPage"
 import TicketConfirmationPage from "./users/pages/ViewTicketPage";
 
 const root = ReactDOM.createRoot(
@@ -20,17 +24,16 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} /> {/* Define Landing Page */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/movies" element={<MoviesPage />} />{" "}
-        {/* Define Movies Page */}
         <Route path="/register" element={<RegisterPage />} />{" "}
-        {/* Define Register Page */}
+        <Route path="/verify-email" element={<EmailVerificationPage />} />
         <Route path="/login" element={<LoginPage />} />{" "}
-        {/* Define Register Page */}
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/verify-reset" element={<VerifyResetCodePage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/booking/:id" element={<SeatBooking />} />
-        {/* Define Seat Booking Page */}
         <Route path="/movie/:id" element={<MovieDetails />} />
-        {/* Define Movie Details Page */}
         <Route path="/showtimes/:cinemaId" element={<MoviesPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<LandingPage />} />{" "}

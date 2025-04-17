@@ -6,7 +6,7 @@ import { RoomTemplates } from "../config/roomTemplate";
 
 export const mockMovies: MovieProps[] = [
   {
-    id: 1,
+    movieId: 1,
     title: "Bad Boys",
     image: "https://imgur.com/66iKVYe.jpg",
     banner: "https://imgur.com/cAh8q3p.jpg",
@@ -68,7 +68,7 @@ export const mockMovies: MovieProps[] = [
     ],
   },
   {
-    id: 2,
+    movieId: 2,
     title: "THE MARTIAN",
     image: "https://imgur.com/4g2YpxN.jpg",
     banner: "https://imgur.com/caVTbAu.jpg",
@@ -107,7 +107,7 @@ export const mockMovies: MovieProps[] = [
     ],
   },
   {
-    id: 3,
+    movieId: 3,
     title: "GHOST BUSTERS FROZEN EMPIRE",
     image: "https://imgur.com/Y63vDcx.jpg",
     banner: "https://imgur.com/WAekdBQ.jpg",

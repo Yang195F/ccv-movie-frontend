@@ -1,0 +1,151 @@
+.login-page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    color: white;
+  }
+  
+  .login-content {
+    flex: 1;
+    display: flex;
+    width: 100%;
+  }
+  
+  .login-form-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .login-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  
+  .login-subtitle {
+    color: #aaa;
+    margin-bottom: 2rem;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .forgot-password {
+    color: #e53e3e;
+    text-decoration: none;
+  }
+  
+  .login-button {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 0.875rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.2s;
+  }
+  
+  .login-button:hover {
+    background-color: #c53030;
+  }
+  
+  .login-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .register-prompt {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #aaa;
+  }
+  
+  .register-link {
+    color: #e53e3e;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-image-container {
+    flex: 1;
+    display: none;
+  }
+  
+  .login-image {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .promo-content {
+    max-width: 400px;
+  }
+  
+  .promo-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .promo-content p {
+    font-size: 1.125rem;
+    color: #ddd;
+  }
+  
+  .error-message {
+    background-color: rgba(229, 62, 62, 0.1);
+    border-left: 4px solid #e53e3e;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #e53e3e;
+  }
+  
+  /* Responsive design */
+  @media (min-width: 768px) {
+    .login-image-container {
+      display: block;
+    }
+  }
+  

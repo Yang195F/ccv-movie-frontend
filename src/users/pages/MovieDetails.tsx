@@ -2,21 +2,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { ChevronDown, ChevronLeft } from "lucide-react";
-import { mockMovies } from "../../data/mockData";
+import { getMovieById } from "../../services/movieService";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "../styles/moviedetails.css";
-
-const generateDateRange = (days: number): string[] => {
-  const today = new Date();
-  const range: string[] = [];
-  for (let i = 0; i < days; i++) {
-    const future = new Date(today);
-    future.setDate(today.getDate() + i);
-    range.push(future.toISOString().split("T")[0]);
-  }
-  return range;
-};
 
 const isPastSession = (dateStr: string, timeStr: string): boolean => {
   const now = new Date();
@@ -27,22 +16,48 @@ const isPastSession = (dateStr: string, timeStr: string): boolean => {
 const MovieDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const movie = mockMovies.find((m) => m.id === Number(id));
-  const todayISO = new Date().toISOString().split("T")[0];
 
-  // Only show today and future dates based on screening data
+  const [movie, setMovie] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState<string>("");
+
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const result = await getMovieById(id!);
+        if (result.success) {
+          setMovie(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching movie:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovie();
+  }, [id]);
+
   const availableDates = useMemo(() => {
     if (!movie?.screenings) return [];
-    const allDates = movie.screenings.flatMap(
-      (s) => s.sessions?.map((sess) => sess.date) || []
-    );
-    const uniqueDates = Array.from(new Set(allDates));
-    return uniqueDates
-      .filter((d) => new Date(d) >= new Date(todayISO))
-      .sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-  }, [movie]);
 
-  const [selectedDate, setSelectedDate] = useState<string>("");
+    const today = new Date();
+    const sevenDaysLater = new Date();
+    sevenDaysLater.setDate(today.getDate() + 6);
+
+    const allDates = movie.screenings.map((s: any) =>
+      new Date(s.startTime).toISOString().split("T")[0]
+    );
+
+    const uniqueDates = Array.from(new Set(allDates)) as string[];
+
+    return uniqueDates
+      .filter((d: string) => {
+        const date = new Date(d);
+        return date >= today && date <= sevenDaysLater;
+      })
+      .sort((a: string, b: string) => new Date(a).getTime() - new Date(b).getTime());
+  }, [movie]);
 
   useEffect(() => {
     if (availableDates.length > 0) {
@@ -52,21 +67,52 @@ const MovieDetails = () => {
 
   const filteredScreenings = useMemo(() => {
     if (!movie?.screenings || !selectedDate) return [];
-    return movie.screenings
-      .map((screening) => ({
-        cinema: screening.cinema,
-        sessions: (screening.sessions || []).filter(
-          (s) => s.date === selectedDate
-        ),
-      }))
-      .filter((s) => s.sessions.length > 0);
+
+    const sessions = movie.screenings
+      .filter((s: any) => {
+        const sessionDate = new Date(s.startTime).toISOString().split("T")[0];
+        return sessionDate === selectedDate;
+      })
+      .map((s: any) => ({
+        screeningId: s.screeningId, // 👈 make sure this is coming from backend
+        cinema: s.cinemaName || "Unknown Cinema",
+        date: new Date(s.startTime).toISOString().split("T")[0],
+        time: new Date(s.startTime).toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        roomId: s.roomId || "Unknown Room ID",
+        status: "available",
+      }));
+
+    const grouped = sessions.reduce((acc: any, curr: any) => {
+      const found = acc.find((g: any) => g.cinema === curr.cinema);
+      if (found) {
+        found.sessions.push(curr);
+      } else {
+        acc.push({ cinema: curr.cinema, sessions: [curr] });
+      }
+      return acc;
+    }, []);
+
+    return grouped;
   }, [movie, selectedDate]);
 
-  const hasValidShowtimes = filteredScreenings.some((screen) =>
+  const hasValidShowtimes = filteredScreenings.some((screen: any) =>
     screen.sessions.some(
-      (s) => !isPastSession(s.date, s.time) && s.status !== "sold out"
+      (s: any) => !isPastSession(s.date, s.time) && s.status !== "sold out"
     )
   );
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <div className="loading">Loading movie...</div>
+        <Footer />
+      </>
+    );
+  }
 
   if (!movie) {
     return (
@@ -82,17 +128,17 @@ const MovieDetails = () => {
     <>
       <Navbar />
       <div className="movie-details-container">
-        <div
-          className="banner"
-          style={{ backgroundImage: `url(${movie.banner})` }}
-        >
+        <div className="banner" style={{ backgroundImage: `url(${movie.banner})` }}>
           <button className="back-button" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} /> Back
           </button>
           <div className="details-overlay">
             <h1 className="title">{movie.title}</h1>
             <p className="metadata">
-              {movie.genre} | {movie.duration} | {movie.languages.join(", ")}
+              {movie.genre} | {movie.duration} |{" "}
+              {Array.isArray(movie.languages)
+                ? movie.languages.join(", ")
+                : movie.languages}
             </p>
             <div className="button-group">
               <button className="info-btn">
@@ -134,11 +180,11 @@ const MovieDetails = () => {
               </div>
 
               {hasValidShowtimes ? (
-                filteredScreenings.map((screen) => (
+                filteredScreenings.map((screen: any) => (
                   <div key={screen.cinema} className="cinema-block">
                     <h4>{screen.cinema}</h4>
                     <div className="session-group">
-                      {screen.sessions.map((sess, i) => {
+                      {screen.sessions.map((sess: any, i: number) => {
                         const isPast = isPastSession(sess.date, sess.time);
                         const isSold = sess.status === "sold out";
                         const canBook = !isPast && !isSold;
@@ -146,10 +192,10 @@ const MovieDetails = () => {
                         const statusClass = isPast
                           ? "past"
                           : isSold
-                          ? "sold"
-                          : sess.status === "selling fast"
-                          ? "fast"
-                          : "available";
+                            ? "sold"
+                            : sess.status === "selling fast"
+                              ? "fast"
+                              : "available";
 
                         return (
                           <div key={i} className="session-tag">
@@ -159,13 +205,9 @@ const MovieDetails = () => {
                               onClick={() =>
                                 canBook &&
                                 navigate(
-                                  `/booking/${
-                                    movie?.id
-                                  }?cinema=${encodeURIComponent(
+                                  `/booking/${sess.screeningId}?cinema=${encodeURIComponent(
                                     screen.cinema
-                                  )}&date=${sess.date}&time=${sess.time}&room=${
-                                    sess.roomId
-                                  }`
+                                  )}&date=${sess.date}&time=${sess.time}&room=${sess.roomId}`
                                 )
                               }
                             >
@@ -186,7 +228,7 @@ const MovieDetails = () => {
                 ))
               ) : (
                 <p className="no-showtimes-message">
-                  No showtimes available for today.
+                  No showtimes available for the next 7 days.
                 </p>
               )}
 

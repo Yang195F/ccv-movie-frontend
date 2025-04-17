@@ -1,5 +1,5 @@
 export interface MovieProps {
-  id: number;
+  movieId: number;
   title: string;
   image: string; // Poster
   banner: string; // Full-width background
