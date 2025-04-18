@@ -15,7 +15,7 @@ const EmailVerificationPage: React.FC = () => {
     const [successMessage, setSuccessMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [animateForm, setAnimateForm] = useState(false)
-    const [timeLeft, setTimeLeft] = useState(300) // 5 minutes in seconds
+    const [timeLeft, setTimeLeft] = useState(300)
 
     const navigate = useNavigate()
     const location = useLocation()

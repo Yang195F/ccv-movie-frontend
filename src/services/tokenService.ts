@@ -11,7 +11,7 @@ export const refreshToken = async () => {
     });
 
     if (!res.ok) {
-        localStorage.clear(); // optional: force logout
+        localStorage.clear();
         return null;
     }
 

@@ -112,3 +112,24 @@ export const getRoomById = async (roomId: string) => {
         return { success: false, message: error.message };
     }
 };
+
+export const deleteMovie = async (movieId: string) => {
+    const response = await fetch(apiRoutes.movies.deleteMovie(movieId), {
+        method: "DELETE",
+    });
+    return response.json();
+};
+
+export const updateMovie = async (movieId: string, payload: any) => {
+    const response = await fetch(apiRoutes.movies.updateMovie(movieId), {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    });
+    return response.json();
+};
+
+export const getBannerMovies = async () => {
+    const response = await fetch(apiRoutes.movies.getBannerMovies);
+    return response.json();
+};

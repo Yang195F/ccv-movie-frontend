@@ -1,0 +1,108 @@
+.admin-form-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .admin-form {
+    margin-top: 1.5rem;
+  }
+  
+  .admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .admin-form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .admin-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .admin-form-input,
+  .admin-form-select,
+  .admin-form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .admin-form-input:focus,
+  .admin-form-select:focus,
+  .admin-form-textarea:focus {
+    outline: none;
+    border-color: #e50914;
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.1);
+  }
+  
+  .admin-form-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .admin-form-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .admin-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .admin-checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .admin-form-preview {
+    margin-top: 0.5rem;
+  }
+  
+  .admin-image-preview {
+    max-width: 100px;
+    max-height: 150px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .admin-banner-preview {
+    max-width: 100%;
+    height: auto;
+    max-height: 100px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+  }
+  
+  .admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .admin-form-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  @media (max-width: 768px) {
+    .admin-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

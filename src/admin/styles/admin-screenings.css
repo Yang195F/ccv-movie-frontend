@@ -1,0 +1,40 @@
+.admin-screenings {
+    position: relative;
+  }
+  
+  .admin-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .admin-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .admin-filter-group label {
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .admin-filter-group select {
+    min-width: 200px;
+  }
+  
+  .admin-empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #777;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .admin-empty-icon {
+    color: #ddd;
+  }
+  

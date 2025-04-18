@@ -1,8 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
@@ -40,6 +41,20 @@ const CinemaWebsite: React.FC = () => {
     }
 
     fetchMovies()
+  }, [])
+
+  useEffect(() => {
+    // Clean up any modal or overlay effects when component mounts
+    document.body.style.overflow = ""
+
+    // Remove any lingering modal-related classes
+    document.body.classList.remove("modal-open")
+
+    return () => {
+      // Clean up when component unmounts
+      document.body.style.overflow = ""
+      document.body.classList.remove("modal-open")
+    }
   }, [])
 
   const handleTabChange = (tab: string) => {

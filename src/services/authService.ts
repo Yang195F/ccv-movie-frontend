@@ -1,5 +1,19 @@
 import { apiClient } from "../config/apiClient";
-import apiRoutes from "../config/apiRoutes"
+import apiRoutes from "../config/apiRoutes";
+
+interface LoginResponse {
+    success: boolean
+    message?: string
+    data?: {
+        token: string
+        refreshToken: string
+        user: {
+            userId: string
+            name: string
+            email: string
+        }
+    }
+}
 
 export const register = async (username: string, password: string, email: string) => {
     try {
@@ -93,20 +107,6 @@ export const refreshToken = async () => {
     }
 }
 
-interface LoginResponse {
-    success: boolean
-    message?: string
-    data?: {
-        token: string
-        refreshToken: string
-        user: {
-            userId: string
-            name: string
-            email: string
-        }
-    }
-}
-
 export const login = async (email: string, password: string): Promise<LoginResponse> => {
     try {
         const response = await fetch(apiRoutes.auths.login, {
@@ -193,4 +193,100 @@ export const getCurrentUser = () => {
     } catch (e) {
         return null
     }
+
+
 }
+
+export const getAllUsers = async () => {
+    try {
+        const token = sessionStorage.getItem("authToken");
+
+        const res = await fetch(apiRoutes.auths.getAllUsers, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return { success: false, message: data.message || "Failed to fetch users" };
+        }
+
+        return { success: true, data };
+    } catch (error: any) {
+        return { success: false, message: error.message };
+    }
+};
+
+export const getCurrentUserInfo = async () => {
+    try {
+        const token = sessionStorage.getItem("authToken");
+
+        const res = await fetch(apiRoutes.auths.getMe, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return { success: false, message: data.message || "Failed to fetch user info" };
+        }
+
+        return { success: true, data };
+    } catch (error: any) {
+        return { success: false, message: error.message };
+    }
+};
+
+export const deleteUser = async (userId: string) => {
+    try {
+        const token = sessionStorage.getItem("authToken");
+
+        const res = await fetch(apiRoutes.auths.deleteUser(userId), {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return { success: false, message: data.message || "Failed to delete user" };
+        }
+
+        return { success: true, message: data.message };
+    } catch (error: any) {
+        return { success: false, message: error.message };
+    }
+};
+
+export const updateUserProfile = async (updatedUser: any) => {
+    try {
+        const token = sessionStorage.getItem("authToken");
+
+        const res = await fetch(apiRoutes.auths.updateMe, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(updatedUser),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return { success: false, message: data.message || "Update failed" };
+        }
+
+        return { success: true, data };
+    } catch (error: any) {
+        return { success: false, message: error.message };
+    }
+};

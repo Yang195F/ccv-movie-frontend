@@ -1,0 +1,33 @@
+.admin-rooms {
+    position: relative;
+  }
+  
+  .admin-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .admin-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .admin-badge-imax {
+    background-color: #cfe2ff;
+    color: #084298;
+  }
+  
+  .admin-badge-lux {
+    background-color: #d1e7dd;
+    color: #0f5132;
+  }
+  
+  .admin-badge-indulge {
+    background-color: #fff3cd;
+    color: #664d03;
+  }
+  
